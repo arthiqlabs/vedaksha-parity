@@ -128,8 +128,16 @@ def build_pathological_cases(
             extrema = find_distance_extrema(samples)
             flagged.update(extrema["perigee"])
             flagged.update(extrema["apogee"])
+    node_set = set(NODES)
     for i, body_a in enumerate(bodies):
         for body_b in bodies[i + 1 :]:
+            if body_a in node_set and body_b in node_set:
+                # MeanNode/TrueNode are two conventions for the same physical
+                # point, permanently within ~1.5 deg of each other by
+                # construction (TrueNode oscillates around MeanNode) -- not a
+                # real close-approach event, and flagging it saturates the
+                # entire grid instead of finding rare pathological instants.
+                continue
             flagged.update(
                 find_conjunctions(
                     samples_by_body[body_a], samples_by_body[body_b], threshold_deg=conjunction_threshold_deg

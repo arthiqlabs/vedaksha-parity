@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import pytest
 
+from vedaksha_parity.config import NODES
 from vedaksha_parity.engine import Engine
 from vedaksha_parity.pathological_cases import (
     Sample,
@@ -87,6 +88,24 @@ def test_find_conjunctions_only_compares_matching_instants():
     a = _samples((1.0, 100.0, 0.0, 1.0))
     b = _samples((2.0, 100.0, 0.0, 1.0))  # different jd_ut -- must not match
     assert find_conjunctions(a, b, threshold_deg=5.0) == []
+
+
+class _MeanTrueNodeEngine:
+    """MeanNode/TrueNode permanently ~1 deg apart, constant speed/distance
+    -- no station point, no wraparound, no distance extremum, nothing but a
+    permanent near-conjunction between the two node conventions."""
+
+    def position(self, jd_ut, body):
+        longitude = 100.0 if body == "MeanNode" else 101.0
+        return {"longitude": longitude, "latitude": 0.0, "distance": 1.0, "speed": -0.05}
+
+
+def test_build_pathological_cases_does_not_flag_meannode_truenode_as_a_conjunction():
+    # Regression: the two node conventions are always <2 deg apart by
+    # construction, which used to saturate the entire grid before the
+    # node-vs-node skip was added to the conjunction loop.
+    cases = build_pathological_cases(_MeanTrueNodeEngine(), list(NODES), 1.0, 10.0, step_days=1.0)
+    assert cases == []
 
 
 def test_sample_body_rejects_a_non_positive_step():
