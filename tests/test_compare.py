@@ -52,6 +52,31 @@ def test_compare_position_handles_an_oracle_with_no_latitude():
     result = compare_position(engine, oracle)
     assert "latitude_delta_arcsec" not in result
     assert "latitude_disposition" not in result
+    assert result["disposition"] == result["longitude_disposition"]
+
+
+def test_compare_position_overall_disposition_is_the_worst_component():
+    # Longitude alone passes (3.6"), but latitude is off by 2 degrees --
+    # the overall disposition must reflect that, not just longitude.
+    # This is the exact "vacuous position pass" gap flagged in review.
+    engine = {"longitude": 100.0, "latitude": 1.0}
+    oracle = {"longitude": 100.001, "latitude": 3.0}
+    result = compare_position(engine, oracle)
+    assert result["longitude_disposition"] == "pass"
+    assert result["latitude_disposition"] == "fail"
+    assert result["disposition"] == "fail"
+
+
+def test_compare_position_reports_distance_and_speed_deltas_unclassified():
+    # No calibrated tolerance band exists for either yet -- reported as
+    # raw deltas only, never folded into disposition.
+    engine = {"longitude": 100.0, "latitude": 1.0, "distance": 1.5, "speed": 0.9}
+    oracle = {"longitude": 100.001, "latitude": 1.0, "distance": 1.6, "speed": 1.1}
+    result = compare_position(engine, oracle)
+    assert result["distance_delta_au"] == pytest.approx(-0.1)
+    assert result["speed_delta_deg_per_day"] == pytest.approx(-0.2)
+    assert "distance_disposition" not in result
+    assert "speed_disposition" not in result
     assert result["longitude_disposition"] == "pass"
 
 

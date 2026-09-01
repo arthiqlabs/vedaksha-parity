@@ -49,11 +49,11 @@ def run(cases: list[dict[str, Any]], engine: Engine, oracle: Any) -> dict[str, A
             if case["kind"] == "position":
                 engine_answer = engine.position(case["jd_ut"], case["body"])
                 comparison = compare_position(engine_answer, oracle_answer)
-                disposition = comparison["longitude_disposition"]
+                disposition = comparison["disposition"]
             elif case["kind"] == "tropical_position":
                 engine_answer = engine.tropical_position(case["jd_ut"], case["body"])
                 comparison = compare_position(engine_answer, oracle_answer)
-                disposition = comparison["longitude_disposition"]
+                disposition = comparison["disposition"]
             elif case["kind"] == "ayanamsha":
                 engine_answer = {"value": engine.ayanamsha(case["jd_ut"])}
                 comparison = compare_ayanamsha(engine_answer, oracle_answer)

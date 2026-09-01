@@ -30,19 +30,48 @@ def classify(delta_arcsec: float, band: dict[str, float]) -> str:
     return "fail"
 
 
+_DISPOSITION_SEVERITY = {"pass": 0, "review": 1, "fail": 2}
+
+
+def _worst_disposition(dispositions: list[str]) -> str:
+    return max(dispositions, key=lambda d: _DISPOSITION_SEVERITY[d])
+
+
 def compare_position(engine_answer: dict[str, float], oracle_answer: dict[str, float]) -> dict[str, Any]:
+    """"Position" is not "longitude" — a case that agrees on longitude but
+    disagrees badly on latitude must not be counted pass. `disposition`
+    is the worst of every sub-metric this comparator can actually
+    classify (currently longitude, and latitude when the oracle answers
+    it); it is the field callers should use as the case's overall
+    disposition, not `longitude_disposition` alone.
+
+    Distance and speed are reported as raw deltas only, never classified
+    — there is no externally-calibrated tolerance band for either yet
+    (see TOLERANCES' own "provisional" note), and inventing one here
+    would be exactly the researcher-degrees-of-freedom problem this
+    project's own tolerance policy already flags. They do not affect
+    `disposition` until a real band exists."""
     lon_delta_deg = circular_diff_deg(engine_answer["longitude"], oracle_answer["longitude"])
     lon_delta_arcsec = lon_delta_deg * 3600.0
+    longitude_disposition = classify(lon_delta_arcsec, TOLERANCES["position_longitude_arcsec"])
     result: dict[str, Any] = {
         "longitude_delta_arcsec": lon_delta_arcsec,
-        "longitude_disposition": classify(lon_delta_arcsec, TOLERANCES["position_longitude_arcsec"]),
+        "longitude_disposition": longitude_disposition,
     }
+    dispositions = [longitude_disposition]
     # Some oracles answer only longitude — absence is a disclosed gap,
     # never fabricated as 0.0. Latitude fields are simply omitted.
     if "latitude" in oracle_answer:
         lat_delta_arcsec = (engine_answer["latitude"] - oracle_answer["latitude"]) * 3600.0
+        latitude_disposition = classify(lat_delta_arcsec, TOLERANCES["position_latitude_arcsec"])
         result["latitude_delta_arcsec"] = lat_delta_arcsec
-        result["latitude_disposition"] = classify(lat_delta_arcsec, TOLERANCES["position_latitude_arcsec"])
+        result["latitude_disposition"] = latitude_disposition
+        dispositions.append(latitude_disposition)
+    if "distance" in oracle_answer:
+        result["distance_delta_au"] = engine_answer["distance"] - oracle_answer["distance"]
+    if "speed" in oracle_answer:
+        result["speed_delta_deg_per_day"] = engine_answer["speed"] - oracle_answer["speed"]
+    result["disposition"] = _worst_disposition(dispositions)
     return result
 
 
