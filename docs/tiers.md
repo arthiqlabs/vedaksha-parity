@@ -22,6 +22,7 @@ once, never silently moved into a friendlier category without a trace.
 | Tier | Quantity | Case kind(s) | Oracles that answer it |
 |---|---|---|---|
 | T1 | sidereal position | `position` | Swiss Ephemeris, jyotishganit |
+| T1-adversarial | sidereal position, adversarially-sampled instants | `position` | same oracles as T1 |
 | T1-tropical | tropical position | `tropical_position` | Swiss Ephemeris, Skyfield+DE440, INPOP21a, Astronomy Engine |
 | T2 | ayanamsha | `ayanamsha` | Swiss Ephemeris |
 | Karakas | Jaimini karaka ranking (8-scheme) | `karakas` | PyJHora (`horoscope.main.get_chara_karakas`) |
@@ -69,6 +70,26 @@ comparing against a mean-only ayanamsha convention if that's ever needed;
 `"true"` is the default and what the figures above use.
 
 Reproduce: `vedaksha-parity run-config configs/all-tiers-200-birthbank-v2.yaml`
+
+### T1-adversarial — same quantity as T1, deliberately hard instants
+
+T1's uniform stride grid is reproducible, but a fixed step can
+systematically undersample the numerically difficult regimes where a real
+divergence is most likely to actually surface: station points,
+perigee/apogee, longitude wraparound, same-instant conjunctions. Case kind
+and comparators are identical to T1 — only case *selection* differs:
+`build_cases_t1_adversarial` (`src/vedaksha_parity/pathological_cases.py`)
+runs its own dense scan of Vedaksha's own output over the requested
+`(from, to, step)` and flags instants directly from that output (a
+speed-sign change, a local distance extremum, proximity to the 0/360
+boundary, cross-body proximity) — never from a reference's internals, per
+`FIREWALL.md` rule 1. `--step` here means scan density, not case spacing:
+a smaller step is a more thorough (and slower) scan, not more output.
+
+Not yet part of a committed canonical run — added as a second case source
+alongside T1's grid, not yet exercised against a real oracle roster at
+scale. Reproduce (once run): `vedaksha-parity run --tier t1-adversarial
+--oracle swisseph --from <jd> --to <jd> --step <days>`.
 
 ### Karakas
 

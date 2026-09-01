@@ -33,6 +33,7 @@ from vedaksha_parity.location_grid import (
     build_cases_panchanga_default_grid,
     build_cases_vargas_default_grid,
 )
+from vedaksha_parity.pathological_cases import build_cases_t1_adversarial
 from vedaksha_parity.report import build_run_record, print_summary, write_run, write_run_markdown
 from vedaksha_parity.run_config import OracleRunConfig, load_run_config
 from vedaksha_parity.runner import run as run_cases
@@ -40,6 +41,7 @@ from vedaksha_parity.runner import run as run_cases
 TIER_BUILDERS = {
     "t1": build_cases_t1,
     "t1-tropical": build_cases_t1_tropical,
+    "t1-adversarial": build_cases_t1_adversarial,
     "t2": build_cases_t2,
     "karakas": build_cases_karakas,
     "combustion": build_cases_combustion,
