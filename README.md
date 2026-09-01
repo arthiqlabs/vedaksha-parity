@@ -33,11 +33,14 @@ on faith.
 ## Why this exists
 
 Vedaksha publishes its own accuracy figures, measured against JPL kernels,
-in its own repository. This harness exists to check the same and a broader
-question independently — including against Swiss Ephemeris, the reference
-implementation most people ask about first — in a repo anyone can clone and
-re-run for themselves against a named Vedaksha release. "Don't trust us,
-verify us" only works if the methodology is public and the run is genuinely
+in its own repository, and summarized at
+[vedaksha.net/accuracy](https://vedaksha.net/accuracy) — which cites this
+project's own cross-validation numbers alongside its self-verified ones.
+This harness exists to check the same and a broader question independently
+— including against Swiss Ephemeris, the reference implementation most
+people ask about first — in a repo anyone can clone and re-run for
+themselves against a named Vedaksha release. "Don't trust us, verify us"
+only works if the methodology is public and the run is genuinely
 reproducible; that is the design constraint behind every choice below.
 
 ## Install
