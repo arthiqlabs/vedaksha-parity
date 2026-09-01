@@ -1,0 +1,43 @@
+name: Full Validation
+
+on:
+  schedule:
+    - cron: "0 4 * * 0" # weekly, Sunday
+  workflow_dispatch: {}
+
+jobs:
+  full-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e ".[dev,swisseph,skyfield,jyotishganit,pyjhora,astronomy-engine]"
+
+      - name: Fetch DE440 (skyfield's own known-URL resolution, then hash-verify)
+        run: |
+          mkdir -p vendor/kernels
+          python3 -c "from skyfield.api import Loader; Loader('vendor/kernels/')('de440.bsp')"
+          python3 -c "
+          from pathlib import Path
+          from vedaksha_parity.kernel_manifest import verify_kernel
+          verify_kernel(Path('vendor/kernels/de440.bsp'))
+          print('DE440: verified against data/kernel-manifest.json')
+          "
+
+      # INPOP21a is IMCCE's own distribution, not resolvable through
+      # Skyfield's built-in URL table the way de440.bsp is — fabricating a
+      # direct download URL here would be exactly the kind of unverified
+      # guess this project's own research-first discipline forbids.
+      # Provision it via a repository-level cache/artifact with real
+      # access to the IMCCE distribution instead, restoring to
+      # vendor/kernels/inpop21a.bsp before this step; until that's set up,
+      # INPOP-dependent tests skip cleanly, same as in the PR-CI workflow.
+      - name: Restore INPOP21a from cache, if provisioned
+        uses: actions/cache/restore@v4
+        with:
+          path: vendor/kernels/inpop21a.bsp
+          key: inpop21a-kernel
+
+      - run: pytest -q
