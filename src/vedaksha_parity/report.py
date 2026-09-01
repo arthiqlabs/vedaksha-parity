@@ -91,7 +91,10 @@ def _render_markdown(run_record: dict[str, Any], result: dict[str, Any]) -> str:
     lines.append("")
     lines.append("| Disposition | Count | % |")
     lines.append("|---|---|---|")
-    for disposition in ("pass", "review", "fail", "oracle_unsupported", "oracle_error", "engine_error"):
+    for disposition in (
+        "pass", "review", "fail", "comparison_invalid",
+        "oracle_unsupported", "oracle_error", "engine_error",
+    ):
         count = run_record["counts"].get(disposition, 0)
         pct = (count / total * 100.0) if total else 0.0
         lines.append(f"| {disposition} | {count} | {pct:.1f}% |")

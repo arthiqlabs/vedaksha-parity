@@ -1,6 +1,9 @@
 """Comparison + classification. A case's disposition is always exactly one
-of: pass, review, fail, engine_unsupported, oracle_unsupported. Nothing
-falls through uncounted — see runner.py's disposition accounting."""
+of: pass, review, fail, comparison_invalid, oracle_unsupported,
+oracle_error, engine_error. comparison_invalid means the coverage floor a
+comparator requires (e.g. all 8 karakas, all 12 bhavas) wasn't met -- a
+distinct thing from disagreement, never silently counted as pass. See
+runner.py's disposition accounting."""
 
 from __future__ import annotations
 
@@ -85,8 +88,20 @@ def compare_ayanamsha(engine_answer: dict[str, float], oracle_answer: dict[str, 
 
 
 def _categorical_disposition(
-    mismatch_count: int, *, max_review: int = CATEGORICAL_REVIEW_MISMATCH_MAX
+    mismatch_count: int,
+    *,
+    max_review: int = CATEGORICAL_REVIEW_MISMATCH_MAX,
+    compared_count: int | None = None,
+    min_required: int | None = None,
 ) -> str:
+    # Fail-closed coverage floor, checked before mismatch counting: a
+    # comparator built on set intersection (karakas/vargas/bhavas) would
+    # otherwise report a spurious "pass" if an oracle silently answered
+    # nothing at all -- common = [], mismatches = [], 0 mismatches reads
+    # as agreement. comparison_invalid means the comparison itself never
+    # happened at the expected scale, not that the two sides agreed.
+    if min_required is not None and (compared_count is None or compared_count < min_required):
+        return "comparison_invalid"
     if mismatch_count == 0:
         return "pass"
     if mismatch_count <= max_review:
@@ -111,7 +126,10 @@ def compare_karakas(
         "compared": len(common),
         "mismatched_karakas": mismatched,
         "disposition": _categorical_disposition(
-            len(mismatched), max_review=KARAKA_REVIEW_MISMATCH_MAX
+            len(mismatched),
+            max_review=KARAKA_REVIEW_MISMATCH_MAX,
+            compared_count=len(common),
+            min_required=len(engine_map),
         ),
     }
 
@@ -160,7 +178,13 @@ def compare_drishti(
         "compared_strength": with_strength,
         "missing_in_oracle": missing,
         "extra_in_oracle": extra,
-        "disposition": _categorical_disposition(len(missing) + len(extra)),
+        # Two empty answer sets are mathematically identical, but that's a
+        # broken-adapter signature, not agreement — Vedaksha's own drishti
+        # output is never legitimately empty for a real chart, so require
+        # the engine side to have actually answered something.
+        "disposition": _categorical_disposition(
+            len(missing) + len(extra), compared_count=len(engine_set), min_required=1
+        ),
     }
 
 
@@ -168,13 +192,18 @@ def compare_vargas(engine_answer: dict[str, int], oracle_answer: dict[str, int])
     """Categorical, per body: does the varga sign match? {body: 0-indexed
     sign} on both sides — only bodies present on BOTH sides are compared,
     same discipline as karakas/combustion for a source that can't answer
-    every body (e.g. no node)."""
+    every body (e.g. no node) — a genuine, legitimate partial-coverage
+    case, unlike an oracle silently answering nothing at all. The
+    coverage floor is Lagna + the 7 classical grahas (8), never the
+    nodes, since node coverage varies legitimately by oracle."""
     common = sorted(set(engine_answer) & set(oracle_answer))
     mismatched = [b for b in common if engine_answer[b] != oracle_answer[b]]
     return {
         "compared": len(common),
         "mismatched_bodies": mismatched,
-        "disposition": _categorical_disposition(len(mismatched)),
+        "disposition": _categorical_disposition(
+            len(mismatched), compared_count=len(common), min_required=min(8, len(engine_answer))
+        ),
     }
 
 
@@ -196,7 +225,9 @@ def compare_bhavas(
     return {
         "compared": len(common),
         "mismatched_fields": mismatched,
-        "disposition": _categorical_disposition(len(mismatched)),
+        "disposition": _categorical_disposition(
+            len(mismatched), compared_count=len(common), min_required=len(engine_map)
+        ),
     }
 
 
@@ -209,7 +240,12 @@ def compare_ashtakavarga(engine_answer: list[int], oracle_answer: list[int]) -> 
     ]
     return {
         "mismatched_signs": mismatched,
-        "disposition": _categorical_disposition(len(mismatched)),
+        # Sarvashtakavarga is exactly 12 sign counts, always -- zip(strict)
+        # would already raise on a length mismatch, but two empty lists
+        # would otherwise pass vacuously.
+        "disposition": _categorical_disposition(
+            len(mismatched), compared_count=len(engine_answer), min_required=12
+        ),
     }
 
 
@@ -264,6 +300,16 @@ def compare_dasha(engine_answer: dict[str, Any], oracle_answer: dict[str, Any]) 
     oracle_periods = oracle_answer["maha_dashas"]
     engine_lords = [p["lord"] for p in engine_periods]
     oracle_lords = [p["lord"] for p in oracle_periods]
+    # A full Vimshottari cycle is always exactly 9 lords -- an empty (or
+    # short) list on either side must not reach the equality check below,
+    # where two empty lists would compare equal and read as agreement.
+    if len(engine_lords) < 9 or len(oracle_lords) < 9:
+        return {
+            "lord_sequence_match": False,
+            "engine_lords": engine_lords,
+            "oracle_lords": oracle_lords,
+            "disposition": "comparison_invalid",
+        }
     if engine_lords != oracle_lords:
         return {
             "lord_sequence_match": False,
@@ -295,6 +341,15 @@ def compare_sign_dasha(
     compared."""
     engine_signs = [p["sign_index"] for p in engine_answer]
     oracle_signs = [p["sign_index"] for p in oracle_answer]
+    # Always exactly 12 signs -- same vacuous-empty-list risk as
+    # compare_dasha above.
+    if len(engine_signs) < 12 or len(oracle_signs) < 12:
+        return {
+            "sign_sequence_match": False,
+            "engine_signs": engine_signs,
+            "oracle_signs": oracle_signs,
+            "disposition": "comparison_invalid",
+        }
     if engine_signs != oracle_signs:
         return {
             "sign_sequence_match": False,

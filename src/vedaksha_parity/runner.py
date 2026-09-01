@@ -26,7 +26,7 @@ from vedaksha_parity.oracles.base import OracleUnsupported
 def run(cases: list[dict[str, Any]], engine: Engine, oracle: Any) -> dict[str, Any]:
     rows: list[dict[str, Any]] = []
     counts = {
-        "pass": 0, "review": 0, "fail": 0,
+        "pass": 0, "review": 0, "fail": 0, "comparison_invalid": 0,
         "oracle_unsupported": 0, "oracle_error": 0, "engine_error": 0,
     }
 

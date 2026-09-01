@@ -97,6 +97,12 @@ def test_compare_karakas_passes_on_full_agreement():
     assert result["disposition"] == "pass"
 
 
+def test_compare_karakas_below_the_coverage_floor_is_comparison_invalid():
+    # An oracle that answers nothing must not read as "0 mismatches, pass".
+    result = compare_karakas(_KARAKAS_ATMAKARAKA_MOON, [])
+    assert result["disposition"] == "comparison_invalid"
+
+
 def test_compare_karakas_reviews_a_single_rank_swap():
     # A swap changes two titles at once — this must land in review, not fail.
     oracle = [
@@ -144,6 +150,14 @@ def test_compare_drishti_passes_on_identical_sets():
     assert result["disposition"] == "pass"
 
 
+def test_compare_drishti_both_empty_is_comparison_invalid_not_pass():
+    # Two empty sets are mathematically identical -- but Vedaksha's own
+    # drishti output is never legitimately empty for a real chart, so
+    # this is a broken-adapter signature, not agreement.
+    result = compare_drishti([], [])
+    assert result["disposition"] == "comparison_invalid"
+
+
 def test_compare_drishti_reports_missing_and_extra():
     oracle = []
     result = compare_drishti(_DRISHTI_ONE, oracle)
@@ -162,8 +176,10 @@ def test_compare_drishti_ignores_strength_when_the_oracle_has_none():
     assert result["disposition"] == "pass"
 
 
-def _dasha_periods(start_offsets_days):
-    lords = ["Rahu", "Jupiter", "Saturn"]
+_VIMSHOTTARI_LORDS = ["Rahu", "Jupiter", "Saturn", "Mercury", "Ketu", "Venus", "Sun", "Moon", "Mars"]
+
+
+def _dasha_periods(start_offsets_days, lords=_VIMSHOTTARI_LORDS):
     periods = []
     jd = 2451545.0
     for lord, offset in zip(lords, start_offsets_days, strict=True):
@@ -171,25 +187,38 @@ def _dasha_periods(start_offsets_days):
     return {"maha_dashas": periods}
 
 
+_NINE_OFFSETS = [float(i * 100) for i in range(9)]
+
+
 def test_compare_dasha_passes_on_matching_boundaries():
-    periods = _dasha_periods([0.0, 100.0, 200.0])
+    periods = _dasha_periods(_NINE_OFFSETS)
     assert compare_dasha(periods, periods)["disposition"] == "pass"
 
 
 def test_compare_dasha_fails_on_a_different_lord_sequence():
-    engine = _dasha_periods([0.0, 100.0, 200.0])
-    oracle = {"maha_dashas": [{"lord": "Ketu", "start_jd": 2451545.0, "end_jd": 2451645.0}]}
+    engine = _dasha_periods(_NINE_OFFSETS)
+    reversed_lords = list(reversed(_VIMSHOTTARI_LORDS))
+    oracle = _dasha_periods(_NINE_OFFSETS, lords=reversed_lords)
     result = compare_dasha(engine, oracle)
     assert result["lord_sequence_match"] is False
     assert result["disposition"] == "fail"
 
 
 def test_compare_dasha_reviews_a_small_boundary_drift():
-    engine = _dasha_periods([0.0, 100.0, 200.0])
-    oracle = _dasha_periods([0.5, 100.5, 200.5])  # half a day off, same lords
+    engine = _dasha_periods(_NINE_OFFSETS)
+    oracle = _dasha_periods([o + 0.5 for o in _NINE_OFFSETS])  # half a day off, same lords
     result = compare_dasha(engine, oracle)
     assert result["lord_sequence_match"] is True
     assert result["disposition"] == "review"
+
+
+def test_compare_dasha_below_the_coverage_floor_is_comparison_invalid():
+    # A short (or empty) lord list must not vacuously equal another short
+    # list and read as agreement -- a full Vimshottari cycle is always 9.
+    engine = _dasha_periods(_NINE_OFFSETS)
+    oracle = {"maha_dashas": []}
+    result = compare_dasha(engine, oracle)
+    assert result["disposition"] == "comparison_invalid"
 
 
 def _houses(asc=100.0, mc=10.0, cusp_shift=0.0):
@@ -212,23 +241,46 @@ def test_compare_houses_flags_the_single_worst_point():
     assert result["disposition"] == "fail"
 
 
+def _varga_signs(with_nodes=True):
+    signs = {"Lagna": 10, "Sun": 4, "Moon": 11, "Mercury": 2, "Venus": 7,
+             "Mars": 0, "Jupiter": 9, "Saturn": 5}
+    if with_nodes:
+        signs.update({"MeanNode": 6, "TrueNode": 6})
+    return signs
+
+
 def test_compare_vargas_passes_on_full_agreement():
-    signs = {"Lagna": 10, "Sun": 4, "Moon": 11, "TrueNode": 6}
+    signs = _varga_signs()
     result = compare_vargas(signs, signs)
     assert result["disposition"] == "pass"
 
 
 def test_compare_vargas_only_compares_bodies_present_on_both_sides():
-    engine = {"Lagna": 10, "Sun": 4, "TrueNode": 6}
-    oracle = {"Lagna": 10, "Sun": 4}  # no TrueNode, like jyotishganit
+    # Lagna + all 7 classical grahas (the coverage floor) agree; only the
+    # nodes are missing from the oracle side -- a genuine, legitimate
+    # partial-coverage case (like jyotishganit lacking node vargas), not
+    # a broken adapter, so this must still pass, not comparison_invalid.
+    engine = _varga_signs(with_nodes=True)
+    oracle = _varga_signs(with_nodes=False)
     result = compare_vargas(engine, oracle)
-    assert result["compared"] == 2
+    assert result["compared"] == 8
     assert result["disposition"] == "pass"
 
 
+def test_compare_vargas_below_the_coverage_floor_is_comparison_invalid():
+    # An oracle answering almost nothing (well under Lagna + 7 grahas)
+    # must not read as agreement just because zero of the few compared
+    # bodies happened to mismatch.
+    engine = _varga_signs(with_nodes=True)
+    oracle = {"Lagna": 10, "Sun": 4}
+    result = compare_vargas(engine, oracle)
+    assert result["compared"] == 2
+    assert result["disposition"] == "comparison_invalid"
+
+
 def test_compare_vargas_fails_on_a_sign_mismatch():
-    engine = {"Lagna": 10, "Sun": 4}
-    oracle = {"Lagna": 10, "Sun": 5}
+    engine = _varga_signs(with_nodes=False)
+    oracle = dict(engine, Sun=5)
     result = compare_vargas(engine, oracle)
     assert result["mismatched_bodies"] == ["Sun"]
     assert result["disposition"] == "review"  # single mismatch
@@ -242,6 +294,12 @@ def _bhava(n, sign, kendra=False, trikona=False, dusthana=False, upachaya=False)
 def test_compare_bhavas_passes_on_identical_charts():
     houses = [_bhava(1, 0, kendra=True, trikona=True)]
     assert compare_bhavas(houses, houses)["disposition"] == "pass"
+
+
+def test_compare_bhavas_below_the_coverage_floor_is_comparison_invalid():
+    engine = [_bhava(1, 0), _bhava(2, 1)]
+    result = compare_bhavas(engine, [])
+    assert result["disposition"] == "comparison_invalid"
 
 
 def test_compare_bhavas_flags_a_single_field_mismatch():
@@ -301,24 +359,35 @@ def _sign_dasha_periods(signs, durations=None):
     ]
 
 
+_TWELVE_SIGNS = list(range(12))
+
+
 def test_compare_sign_dasha_passes_on_matching_signs_and_boundaries():
-    periods = _sign_dasha_periods([3, 4, 5])
+    periods = _sign_dasha_periods(_TWELVE_SIGNS)
     assert compare_sign_dasha(periods, periods)["disposition"] == "pass"
 
 
 def test_compare_sign_dasha_fails_on_a_different_sign_sequence():
-    engine = _sign_dasha_periods([3, 4, 5])
-    oracle = _sign_dasha_periods([2, 1, 0])
+    engine = _sign_dasha_periods(_TWELVE_SIGNS)
+    oracle = _sign_dasha_periods(list(reversed(_TWELVE_SIGNS)))
     result = compare_sign_dasha(engine, oracle)
     assert result["sign_sequence_match"] is False
     assert result["disposition"] == "fail"
 
 
+def test_compare_sign_dasha_below_the_coverage_floor_is_comparison_invalid():
+    engine = _sign_dasha_periods(_TWELVE_SIGNS)
+    result = compare_sign_dasha(engine, [])
+    assert result["disposition"] == "comparison_invalid"
+
+
 def test_compare_sign_dasha_reports_which_signs_duration_disagrees():
     # max_boundary_delta_days alone can't tell "tiny drift" from "a few
     # signs disagree" — mismatched_durations makes that visible.
-    engine = _sign_dasha_periods([3, 4, 5], durations=[9.0, 4.0, 3.0])
-    oracle = _sign_dasha_periods([3, 4, 5], durations=[8.0, 4.0, 2.0])
+    durations_e = [9.0, 4.0, 3.0] + [1.0] * 9
+    durations_o = [8.0, 4.0, 2.0] + [1.0] * 9
+    engine = _sign_dasha_periods(_TWELVE_SIGNS, durations=durations_e)
+    oracle = _sign_dasha_periods(_TWELVE_SIGNS, durations=durations_o)
     result = compare_sign_dasha(engine, oracle)
     assert result["sign_sequence_match"] is True
-    assert result["mismatched_durations"] == [3, 5]
+    assert result["mismatched_durations"] == [0, 2]
