@@ -11,6 +11,12 @@ states a different version explicitly. Re-run any `vedaksha-parity
 run-config` command in this file to reproduce the same figures against
 that pin, or a newer one to see whether they still hold.
 
+Every discrepancy discussed below that has an actual classification —
+documented convention, reference limitation, or genuinely unresolved —
+has a structured, evidence-carrying entry in
+`docs/discrepancy-registry.yaml`: one immutable record per finding, set
+once, never silently moved into a friendlier category without a trace.
+
 ## Currently implemented
 
 | Tier | Quantity | Case kind(s) | Oracles that answer it |

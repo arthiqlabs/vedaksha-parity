@@ -1,0 +1,154 @@
+# Formal discrepancy classification registry.
+#
+# Every entry here has one immutable classification, set once with the
+# evidence that justified it, never silently moved into
+# "expected_convention" without a record. This exists because "we
+# disagree, therefore convention" is exactly the escape hatch a rigor
+# claim needs to close off -- docs/tiers.md's own prose already applies
+# this discipline case by case; this file is that same set of
+# conclusions in a structured, greppable form, not a new investigation.
+#
+# classification: one of
+#   agreement             -- both sides agree; nothing to classify
+#   expected_convention    -- both sides answer a different, equally
+#                             legitimate question; requires a
+#                             primary_source_basis
+#   reference_limitation    -- the reference's own known scope/precision
+#                             bound explains the gap, not either engine
+#   vedaksha_defect         -- confirmed via independent derivation, not
+#                             from an oracle's own value
+#   oracle_defect            -- suspected, but this project cannot read
+#                             the oracle's source to confirm (FIREWALL
+#                             rule 1) -- always phrased as a hypothesis
+#   unresolved               -- genuinely open; do not round up to a
+#                             classification the evidence doesn't support
+
+- id: DRISHTI-NODES-001
+  quantity: sign-to-sign aspects for MeanNode/TrueNode (Rahu/Ketu)
+  vedaksha_behavior: >
+    Treats the nodes as ordinary grahas -- universal 7th aspect at full
+    strength, graduated partial strength at 3rd/4th/5th/8th/9th/10th.
+  oracle_behavior: >
+    jyotishganit gives the nodes Jupiter-like special aspects (5th and
+    9th) and no 7th aspect at all.
+  classification: expected_convention
+  primary_source_basis: >
+    Both are attested classical positions on how a permanently-retrograde
+    node's aspects should be reckoned; the fixed, uniform count (6
+    mismatches, zero variance across 100 real charts, entirely explained
+    by missing-7th + extra-{5th,9th} x 2 nodes) is the structural
+    signature of a real convention split, not noise.
+  date_classified: "2026-08-29"
+  evidence: docs/tiers.md, Drishti section
+
+- id: DASHA-YEARLENGTH-001
+  quantity: Vimshottari dasha period boundaries
+  vedaksha_behavior: 365.250000 days/year exactly (the Julian year).
+  oracle_behavior: 365.256360 days/year exactly (the sidereal year, jyotishganit).
+  classification: expected_convention
+  primary_source_basis: >
+    Both are legitimate, well-defined, classically-used year lengths for
+    dasha calculations. Derived directly from each side's own output
+    (full-period end_jd minus start_jd, divided by the lord's own
+    classical duration in years), matching to 6 decimal places across
+    every lord checked on both sides -- not inferred, measured.
+  date_classified: "2026-08-31"
+  evidence: docs/tiers.md, Dasha (Vimshottari) section
+
+- id: ASHTAKAVARGA-SHODHANA-001
+  quantity: Sarvashtakavarga bindu counts
+  vedaksha_behavior: >
+    compute_ashtakavarga's own tool description states explicitly that it
+    does not apply Trikona/Ekadhipatya Shodhana or Pinda Sadhana
+    corrections.
+  oracle_behavior: jyotishganit's counts differ from Vedaksha's by exactly +/-1 bindu per sign.
+  classification: expected_convention
+  primary_source_basis: >
+    Vedaksha's own published tool description is the source for the
+    scope choice; a shodhana step is exactly a +/-1-bindu-per-sign
+    adjustment applied on top of the raw count, consistent with the
+    measured pattern. This is Vedaksha's own documented scope, not an
+    inference about jyotishganit's internals.
+  date_classified: "2026-08-29"
+  evidence: docs/tiers.md, Ashtakavarga section
+
+- id: BHAVA10-KENDRA-UPACHAYA-001
+  quantity: bhava_10.is_upachaya classification
+  vedaksha_behavior: 10th house is not flagged upachaya (only kendra).
+  oracle_behavior: jyotishganit flags the 10th as both kendra and upachaya.
+  classification: expected_convention
+  primary_source_basis: >
+    The 10th house is simultaneously a kendra (quadrant) and, by
+    count-from-lagna, an upachaya house (3rd/6th/10th/11th) -- whether the
+    two roles are mutually exclusive is a live question in the classical
+    tradition itself, not a computation choice invented by either side.
+  date_classified: "2026-08-29"
+  evidence: docs/tiers.md, Bhavas section (Phase B house-cusps finding)
+
+- id: MEANNODE-SIDEREAL-DRIFT-001
+  quantity: MeanNode sidereal longitude, TrueChitra ayanamsha
+  vedaksha_behavior: >
+    Tropical mean node matches an independently-derived physical
+    reference (the Moon's real osculating node, computed from DE440's
+    own state vectors) to within noise: -0.036 +/- 2.11 arcsec/yr.
+  oracle_behavior: >
+    jyotishganit's own reported ayanamsha value is nearly frozen over
+    time (-0.026 to -0.16 arcsec/yr measured, against an expected ~1.83
+    deg over a comparable span for a genuinely precessing ayanamsha) --
+    algebraically, this makes its sidereal Rahu output move at very
+    nearly the tropical rate, accounting for very nearly the exact
+    -50.35 arcsec/yr gap originally measured.
+  classification: reference_limitation
+  primary_source_basis: >
+    A physical arbiter neither implementation alone could provide: DE440
+    state vectors, standard orbital mechanics, with a control proving the
+    method detects a precession-frame error of the size in question. Not
+    a claim about why jyotishganit's ayanamsha behaves this way -- an
+    output-level fact only, per FIREWALL rule 1.
+  date_classified: "2026-09-01"
+  evidence: docs/tiers.md, MeanNode sidereal drift section
+
+- id: PYJHORA-SWISSEPH-INDEPENDENCE-001
+  quantity: whether PyJHora's sidereal longitude is astronomically independent of Swiss Ephemeris
+  vedaksha_behavior: n/a (this entry is about oracle-to-oracle independence, not a Vedaksha comparison)
+  oracle_behavior: >
+    A small, stable, body-specific offset from swisseph (Sun ~20.84",
+    Saturn ~26.2-26.7", constant across three epochs spanning B1900-2035)
+    -- rules out a directly relabeled value, but is equally consistent
+    with the same underlying engine run with a different flag
+    (aberration, light-time correction).
+  classification: unresolved
+  primary_source_basis: null
+  date_classified: "2026-08-29"
+  evidence: docs/oracles.md, pyjhora_oracle.py module docstring
+
+- id: CHARADASHA-DUALLORD-DURATION-001
+  quantity: Chara dasha period duration for dual-lord signs (Scorpio, Aquarius)
+  vedaksha_behavior: >
+    Chart-dependent duration per sign (fixed at vedaksha==9.0.0 via the
+    graha_signs input); residual mismatch after the fix isolates almost
+    entirely to Scorpio (Mars+Ketu) and Aquarius (Saturn+Rahu) -- the two
+    dual-lord signs. Gemini/Virgo (sole Mercury rulership) show 0% mismatch.
+  oracle_behavior: PyJHora's own duration for the same dual-lord signs.
+  classification: unresolved
+  primary_source_basis: null
+  date_classified: "2026-08-31"
+  evidence: docs/tiers.md, Chara dasha section
+
+- id: MARS-SYNODIC-OSCILLATION-001
+  quantity: analytical_position longitude residual vs DE440, Mars, 400-600 years from J2000
+  vedaksha_behavior: >
+    A real, periodic ~2.15-year oscillation (peak-to-peak spacing measured
+    directly from a dense 0.25-year-spaced scan), matching the published
+    Mars-Earth synodic period (779.94 days, ~2.1354 years) to within ~1%.
+  oracle_behavior: n/a -- this is a truncation-error characteristic of the
+    comparison itself (theory-series truncation growing with distance
+    from J2000), not a disagreement between two sources.
+  classification: reference_limitation
+  primary_source_basis: >
+    The Mars-Earth synodic period is a widely published astronomical
+    constant, not anything drawn from a reference's internals. The
+    original 25-year and 5-year sweeps were aliasing this real signal,
+    not observing noise.
+  date_classified: "2026-09-01"
+  evidence: docs/tiers.md, MeanNode section context; full-range TT sweep work
