@@ -21,6 +21,28 @@ def test_position_returns_the_expected_fields(oracle):
     assert set(sun) >= {"longitude", "latitude", "distance", "speed"}
 
 
+def test_backend_is_undetermined_before_any_call():
+    fresh = SwissephOracle()
+    assert fresh.settings()["backends_used"] == "no cases run yet"
+    assert "not yet determined" in fresh.NAME
+
+
+def test_backend_is_recorded_after_a_real_call(oracle):
+    oracle.answer({"kind": "position", "jd_ut": J2000, "body": "Sun"})
+    backends = oracle.settings()["backends_used"]
+    assert isinstance(backends, dict) and sum(backends.values()) >= 1
+    assert set(backends) <= {"SWIEPH", "MOSEPH", "JPLEPH", "UNKNOWN"}
+
+
+def test_require_swieph_raises_when_the_true_backend_is_unavailable():
+    # This environment has no .se1 data files installed (confirmed
+    # directly), so swisseph silently falls back to Moshier — exactly the
+    # case require_swieph=True exists to catch instead of hiding.
+    strict = SwissephOracle(require_swieph=True)
+    with pytest.raises(OracleUnsupported, match="require_swieph"):
+        strict.answer({"kind": "position", "jd_ut": J2000, "body": "Sun"})
+
+
 def test_tropical_position_equals_sidereal_plus_true_ayanamsha_exactly(oracle):
     # TRUE ayanamsha (default): gap is exactly 0.0" — FLG_SIDEREAL already
     # has nutation-in-longitude baked in. MEAN alone leaves a ~14" gap.

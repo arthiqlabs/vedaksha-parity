@@ -41,11 +41,16 @@ _HOUSE_SYSTEMS = {"Placidus": b"P"}
 
 _AYANAMSHA_MODES = ("mean", "true")
 
+# swisseph's own ret_flags bits that identify which backend actually
+# answered a call — checked, not assumed, since FLG_SWIEPH in the
+# REQUEST does not guarantee FLG_SWIEPH in the RESPONSE: without .se1
+# data files installed, swisseph silently substitutes the bundled
+# Moshier analytical ephemeris and still returns a number.
+_BACKEND_BITS = ("SWIEPH", "MOSEPH", "JPLEPH")
+
 
 class SwissephOracle:
-    NAME = "Swiss Ephemeris"
-
-    def __init__(self, ayanamsha_mode: str = "true") -> None:
+    def __init__(self, ayanamsha_mode: str = "true", require_swieph: bool = False) -> None:
         if swe is None:
             raise OracleUnsupported(
                 "pyswisseph is not installed — "
@@ -58,15 +63,46 @@ class SwissephOracle:
             )
         self.VERSION = str(swe.version)
         self._ayanamsha_mode = ayanamsha_mode
+        # Fail-closed by default is the *canonical-run* posture, but this
+        # constructor arg makes it opt-in: strict for a run whose figures
+        # will be published/cited, off for exploratory local use without
+        # .se1 files installed. Never silent either way — settings()
+        # always reports which backend(s) actually answered.
+        self._require_swieph = require_swieph
         swe.set_sid_mode(swe.SIDM_LAHIRI, 0, 0)
         self._body_ids = {name: getattr(swe, const) for name, const in _BODY_IDS.items()}
+        self._backends_used: dict[str, int] = {}
+
+    def _record_backend(self, ret_flags: int) -> None:
+        backend = next((b for b in _BACKEND_BITS if ret_flags & getattr(swe, f"FLG_{b}")), "UNKNOWN")
+        self._backends_used[backend] = self._backends_used.get(backend, 0) + 1
+        if self._require_swieph and backend != "SWIEPH":
+            raise OracleUnsupported(
+                f"require_swieph=True but swisseph answered via {backend}, not SWIEPH — "
+                "no .se1 ephemeris data files are installed (or this instant falls "
+                "outside their date range). Install them or construct with "
+                "require_swieph=False to accept the lower-precision Moshier fallback "
+                "explicitly instead of silently."
+            )
+
+    @property
+    def NAME(self) -> str:
+        # Reflects reality, not the request: if any case in this run fell
+        # back to Moshier, the run is NOT "Swiss Ephemeris" in the sense a
+        # reader would assume — see swisseph_oracle.py's own review notes.
+        if not self._backends_used:
+            return "Swiss Ephemeris (backend not yet determined — no cases run)"
+        if set(self._backends_used) == {"SWIEPH"}:
+            return "Swiss Ephemeris"
+        return f"Swiss Ephemeris (mixed backends: {self._backends_used})"
 
     def settings(self) -> dict[str, Any]:
         return {
             "sidereal_mode": "SIDM_LAHIRI",
             "ayanamsha_mode": self._ayanamsha_mode,
-            "flags": "FLG_SIDEREAL | FLG_SPEED, FLG_SWIEPH preferred, "
-            "FLG_MOSEPH fallback with no ephemeris files installed",
+            "flags": "FLG_SIDEREAL | FLG_SPEED, FLG_SWIEPH requested",
+            "require_swieph": self._require_swieph,
+            "backends_used": dict(self._backends_used) or "no cases run yet",
         }
 
     def answer(self, case: dict[str, Any]) -> dict[str, Any]:
@@ -94,11 +130,12 @@ class SwissephOracle:
         if sidereal:
             flags |= swe.FLG_SIDEREAL
         try:
-            (lon, lat, dist, lon_speed, _lat_speed, _dist_speed), _ret_flags = swe.calc_ut(
+            (lon, lat, dist, lon_speed, _lat_speed, _dist_speed), ret_flags = swe.calc_ut(
                 jd_ut, self._body_ids[body], flags
             )
         except swe.Error as exc:
             raise OracleUnsupported(f"swisseph raised for {body!r} at jd_ut={jd_ut}: {exc}") from exc
+        self._record_backend(ret_flags)
         return {
             "longitude": lon,
             "latitude": lat,
