@@ -54,6 +54,26 @@ Hugging Face changes or grows, this repo's copy does not silently drift —
 any resync is a deliberate, reviewed update, same discipline as an oracle
 version pin in `pyproject.toml`.
 
+## Dev / validation / holdout split
+
+`birth_bank.split_birth_bank(records, ratios={...}, seed=...)` partitions
+the bank into named buckets (e.g. `dev`/`validation`/`holdout`) — a
+permanent, once-and-forever split, not a fresh sample per run. This
+exists because a fixed sample that gets repeatedly examined and fixed
+against (this project's own canonical 200-record run, `seed=42`, is
+exactly that) stops behaving like an independent validation set the more
+it's used that way — a real methodological risk a rigor-focused harness
+should name rather than let go unremarked. `dev` is safe to inspect
+routinely during implementation work; `holdout` is meant to be run, not
+read case-by-case, so it keeps evidentiary weight the others lose with
+repeated use.
+
+The partition is a pure function of each record's own `row_key` and
+`seed` (SHA256-based, not cryptographic — just a stable, well-distributed
+hash), never file order or position, so it's reproducible without storing
+an explicit ID list and stays stable even if the source CSV is later
+resorted or extended.
+
 ## Config schema
 
 ```yaml

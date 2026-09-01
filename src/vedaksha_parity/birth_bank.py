@@ -11,6 +11,7 @@ third-party ephemeris library is required for this step.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import random
 import re
@@ -107,6 +108,53 @@ def select_birth_bank(
     actual_seed = seed if seed is not None else random.SystemRandom().randrange(2**32)
     sampled = random.Random(actual_seed).sample(records, count)
     return sampled, {"source_size": len(records), "count": count, "seed": actual_seed}
+
+
+_DEFAULT_SPLIT_SEED = 20260901  # a fixed, published constant — see split_birth_bank
+
+
+def _split_key(row_key: str, seed: int) -> float:
+    # A stable, deterministic pseudo-position in [0, 1) for one record —
+    # a function of the record's own identity, never its position in the
+    # source file, so re-sorting or extending the CSV can't silently move
+    # a record between buckets. Not cryptographic; sha256 is just a
+    # convenient, well-distributed, dependency-free hash.
+    digest = hashlib.sha256(f"{seed}:{row_key}".encode()).digest()
+    return int.from_bytes(digest[:8], "big") / 2**64
+
+
+def split_birth_bank(
+    records: list[BirthRecord], *, ratios: dict[str, float], seed: int = _DEFAULT_SPLIT_SEED
+) -> dict[str, list[BirthRecord]]:
+    """A permanent, once-and-forever partition of the birth bank — e.g.
+    {"dev": 0.34, "validation": 0.33, "holdout": 0.33} — for exactly the
+    reason review item 7 raised: a fixed 200-record sample that gets
+    re-examined and fixed against repeatedly stops behaving like an
+    independent validation set and starts behaving like a training
+    corpus. `dev` is safe to inspect routinely; `holdout` is meant to be
+    run but not read case-by-case during normal implementation work, so
+    it keeps evidentiary weight a repeatedly-inspected sample no longer
+    has. The partition is a pure function of each record's own row_key
+    and `seed` — deterministic and reproducible without storing an
+    explicit ID list, and stable even if the source CSV is later
+    resorted, filtered, or has new rows appended."""
+    if abs(sum(ratios.values()) - 1.0) > 1e-9:
+        raise ValueError(f"ratios must sum to 1.0, got {ratios}")
+    boundaries: list[tuple[str, float]] = []
+    cumulative = 0.0
+    for name, ratio in ratios.items():
+        cumulative += ratio
+        boundaries.append((name, cumulative))
+    buckets: dict[str, list[BirthRecord]] = {name: [] for name in ratios}
+    for record in records:
+        position = _split_key(record.row_key, seed)
+        for name, threshold in boundaries:
+            if position < threshold:
+                buckets[name].append(record)
+                break
+        else:
+            buckets[boundaries[-1][0]].append(record)  # floating-point edge at exactly 1.0
+    return buckets
 
 
 def build_cases_from_birth_bank(records: list[BirthRecord], tier: str) -> list[dict[str, Any]]:
