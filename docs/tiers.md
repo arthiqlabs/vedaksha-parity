@@ -417,6 +417,14 @@ two-chart Vedaksha tool exists to test it against.
 
 ## Reproducing results
 
+Every figure quoted anywhere in this file traces to a committed, unedited
+raw run record under `results/canonical/` (see that directory's own
+`README.md`) — never a hand-typed number. That directory's own note
+states plainly what environment produced it (in particular: whether real
+Swiss Ephemeris `.se1` data files were installed, since their absence
+silently degrades Swiss comparisons to the Moshier analytical fallback —
+see docs/oracles.md).
+
 ```python
 import vedaksha
 v = vedaksha.Vedaksha()

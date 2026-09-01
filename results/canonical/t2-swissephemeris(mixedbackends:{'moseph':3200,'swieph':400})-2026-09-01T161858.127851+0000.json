@@ -1,0 +1,3402 @@
+{
+  "generated_at": "2026-09-01T16:18:58.127851+00:00",
+  "python": "3.14.6",
+  "tier": "t2",
+  "case_params": {
+    "birth_bank": {
+      "source_size": 15790,
+      "count": 200,
+      "seed": 42,
+      "source": "data/vedastro-15000-famous-births.csv"
+    }
+  },
+  "engine": {
+    "name": "Vedaksha",
+    "version": "9.1.0",
+    "settings": {
+      "ayanamsha": "IndianOfficial",
+      "karaka_scheme": "7"
+    }
+  },
+  "oracle": {
+    "name": "Swiss Ephemeris (mixed backends: {'MOSEPH': 3200, 'SWIEPH': 400})",
+    "version": "2.10.03",
+    "settings": {
+      "sidereal_mode": "SIDM_LAHIRI",
+      "ayanamsha_mode": "true",
+      "flags": "FLG_SIDEREAL | FLG_SPEED, FLG_SWIEPH requested",
+      "require_swieph": false,
+      "backends_used": {
+        "MOSEPH": 3200,
+        "SWIEPH": 400
+      }
+    }
+  },
+  "counts": {
+    "pass": 195,
+    "review": 0,
+    "fail": 0,
+    "comparison_invalid": 0,
+    "oracle_unsupported": 0,
+    "oracle_error": 0,
+    "engine_error": 5
+  },
+  "case_count": 200,
+  "rows": [
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2437779.85
+      },
+      "engine_answer": {
+        "value": 23.32688020219401
+      },
+      "oracle_answer": {
+        "value": 23.326881077382694
+      },
+      "comparison": {
+        "delta_arcsec": -0.0031506792694813157,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2437293.826388889
+      },
+      "engine_answer": {
+        "value": 23.310467246924517
+      },
+      "oracle_answer": {
+        "value": 23.310468372668602
+      },
+      "comparison": {
+        "delta_arcsec": -0.004052678704624668,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2411318.0243055555
+      },
+      "engine_answer": {
+        "value": 22.313826707811877
+      },
+      "oracle_answer": {
+        "value": 22.313826763338266
+      },
+      "comparison": {
+        "delta_arcsec": -0.00019989499975281433,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2412291.871527778
+      },
+      "engine_answer": {
+        "value": 22.353270494142258
+      },
+      "oracle_answer": {
+        "value": 22.35327163699658
+      },
+      "comparison": {
+        "delta_arcsec": -0.004114275563438241,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439430.6354166665
+      },
+      "engine_answer": {
+        "value": 23.38994089440372
+      },
+      "oracle_answer": {
+        "value": 23.389940985333155
+      },
+      "comparison": {
+        "delta_arcsec": -0.00032734597112948904,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2436655.667361111
+      },
+      "engine_answer": {
+        "value": 23.288753512190752
+      },
+      "oracle_answer": {
+        "value": 23.28875374792882
+      },
+      "comparison": {
+        "delta_arcsec": -0.0008486570422405748,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423148.3958333335
+      },
+      "engine_answer": {
+        "value": 22.771861175682716
+      },
+      "oracle_answer": {
+        "value": 22.771861578225817
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014491551638684541,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2401344.785416667
+      },
+      "engine_answer": {
+        "value": 21.94281750671462
+      },
+      "oracle_answer": {
+        "value": 21.942818540724996
+      },
+      "comparison": {
+        "delta_arcsec": -0.003722437359954256,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2392437.4520833334
+      },
+      "engine_answer": {
+        "value": 21.596383470549267
+      },
+      "oracle_answer": {
+        "value": 21.59638334052163
+      },
+      "comparison": {
+        "delta_arcsec": 0.0004680994919681325,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2425450.3680555555
+      },
+      "engine_answer": {
+        "value": 22.855221195945997
+      },
+      "oracle_answer": {
+        "value": 22.85522080496484
+      },
+      "comparison": {
+        "delta_arcsec": 0.0014075321644213545,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427159.1666666665
+      },
+      "engine_answer": {
+        "value": 22.926392603379337
+      },
+      "oracle_answer": {
+        "value": 22.926393241277882
+      },
+      "comparison": {
+        "delta_arcsec": -0.0022964347607512536,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424214.4583333335
+      },
+      "engine_answer": {
+        "value": 22.80867457391137
+      },
+      "oracle_answer": {
+        "value": 22.808674783098876
+      },
+      "comparison": {
+        "delta_arcsec": -0.000753075016746152,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2391641.046527778
+      },
+      "engine_answer": {
+        "value": 21.563007015864844
+      },
+      "oracle_answer": {
+        "value": 21.563007564708336
+      },
+      "comparison": {
+        "delta_arcsec": -0.001975836569556577,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2399043.546527778
+      },
+      "engine_answer": {
+        "value": 21.847713635315067
+      },
+      "oracle_answer": {
+        "value": 21.847714328884294
+      },
+      "comparison": {
+        "delta_arcsec": -0.0024968492169819,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427549.1569444444
+      },
+      "engine_answer": {
+        "value": 22.942564744252376
+      },
+      "oracle_answer": {
+        "value": 22.942565308150176
+      },
+      "comparison": {
+        "delta_arcsec": -0.002030032078437216,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2425935.888888889
+      },
+      "engine_answer": {
+        "value": 22.874414592655718
+      },
+      "oracle_answer": {
+        "value": 22.874415631249356
+      },
+      "comparison": {
+        "delta_arcsec": -0.0037389370959317603,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2449336.0694444445
+      },
+      "engine_answer": {
+        "value": 23.776811664163674
+      },
+      "oracle_answer": {
+        "value": 23.776812300466926
+      },
+      "comparison": {
+        "delta_arcsec": -0.002290691706718917,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427112.59375
+      },
+      "engine_answer": {
+        "value": 22.924948583207144
+      },
+      "oracle_answer": {
+        "value": 22.92494897605535
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014142535462724481,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2400263.0048611113
+      },
+      "engine_answer": {
+        "value": 21.899697224781956
+      },
+      "oracle_answer": {
+        "value": 21.899696729472904
+      },
+      "comparison": {
+        "delta_arcsec": 0.0017831125887823873,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2387419.5048611113
+      },
+      "engine_answer": {
+        "value": 21.410052971742523
+      },
+      "oracle_answer": {
+        "value": 21.410053068923617
+      },
+      "comparison": {
+        "delta_arcsec": -0.00034985193622105726,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2420900.1666666665
+      },
+      "engine_answer": {
+        "value": 22.6894442827766
+      },
+      "oracle_answer": {
+        "value": 22.689445468266474
+      },
+      "comparison": {
+        "delta_arcsec": -0.004267763550558357,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423425.25
+      },
+      "engine_answer": {
+        "value": 22.78156851946009
+      },
+      "oracle_answer": {
+        "value": 22.781568793387716
+      },
+      "comparison": {
+        "delta_arcsec": -0.0009861394516974542,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426510.6631944445
+      },
+      "engine_answer": {
+        "value": 22.898938193585877
+      },
+      "oracle_answer": {
+        "value": 22.89893865327311
+      },
+      "comparison": {
+        "delta_arcsec": -0.001654874036205456,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431960.7805555556
+      },
+      "engine_answer": {
+        "value": 23.103187035140436
+      },
+      "oracle_answer": {
+        "value": 23.103188063099644
+      },
+      "comparison": {
+        "delta_arcsec": -0.003700653147120647,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2442215.3229166665
+      },
+      "engine_answer": {
+        "value": 23.504874046012276
+      },
+      "oracle_answer": {
+        "value": 23.50487491429311
+      },
+      "comparison": {
+        "delta_arcsec": -0.003125811008430901,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2447991.18125
+      },
+      "engine_answer": {
+        "value": 23.724392992400734
+      },
+      "oracle_answer": {
+        "value": 23.724393901063532
+      },
+      "comparison": {
+        "delta_arcsec": -0.003271186074016441,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418673.954861111
+      },
+      "engine_answer": {
+        "value": 22.59605406918993
+      },
+      "oracle_answer": {
+        "value": 22.59605479965201
+      },
+      "comparison": {
+        "delta_arcsec": -0.002629663488562528,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2384758.0256944443
+      },
+      "engine_answer": {
+        "value": 21.299970078417427
+      },
+      "oracle_answer": {
+        "value": 21.299970008436787
+      },
+      "comparison": {
+        "delta_arcsec": 0.0002519303038184262,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439706.236111111
+      },
+      "engine_answer": {
+        "value": 23.402213503077125
+      },
+      "oracle_answer": {
+        "value": 23.40221467858461
+      },
+      "comparison": {
+        "delta_arcsec": -0.004231826946465844,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427430.96875
+      },
+      "engine_answer": {
+        "value": 22.937899998774945
+      },
+      "oracle_answer": {
+        "value": 22.93790035707473
+      },
+      "comparison": {
+        "delta_arcsec": -0.0012898792306259566,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430185.3333333335
+      },
+      "engine_answer": {
+        "value": 23.04023057319333
+      },
+      "oracle_answer": {
+        "value": 23.04023098423556
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014797520265119601,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427329.8958333335
+      },
+      "engine_answer": {
+        "value": 22.933760141614936
+      },
+      "oracle_answer": {
+        "value": 22.933760599478077
+      },
+      "comparison": {
+        "delta_arcsec": -0.001648307308244057,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2447009.290972222
+      },
+      "engine_answer": {
+        "value": 23.683447368072432
+      },
+      "oracle_answer": {
+        "value": 23.68344865292703
+      },
+      "comparison": {
+        "delta_arcsec": -0.004625476552178043,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2425779.6305555557
+      },
+      "engine_answer": {
+        "value": 22.86821104031711
+      },
+      "oracle_answer": {
+        "value": 22.86821144104184
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014426090274355374,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431283.0069444445
+      },
+      "engine_answer": {
+        "value": 23.078242384707387
+      },
+      "oracle_answer": {
+        "value": 23.078242821776247
+      },
+      "comparison": {
+        "delta_arcsec": -0.0015734478935769403,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2409010.9736111113
+      },
+      "engine_answer": {
+        "value": 22.23406022660613
+      },
+      "oracle_answer": {
+        "value": 22.23406118798989
+      },
+      "comparison": {
+        "delta_arcsec": -0.0034609815429575974,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430382.9444444445
+      },
+      "engine_answer": {
+        "value": 23.046985226024546
+      },
+      "oracle_answer": {
+        "value": 23.04698519096327
+      },
+      "comparison": {
+        "delta_arcsec": 0.00012622059557543253,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430120.3229166665
+      },
+      "engine_answer": {
+        "value": 23.037471423865952
+      },
+      "oracle_answer": {
+        "value": 23.03747165696493
+      },
+      "comparison": {
+        "delta_arcsec": -0.0008391563156351367,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430325.09375
+      },
+      "engine_answer": {
+        "value": 23.044418036148002
+      },
+      "oracle_answer": {
+        "value": 23.044418309376262
+      },
+      "comparison": {
+        "delta_arcsec": -0.0009836217344627585,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427004.972222222
+      },
+      "engine_answer": {
+        "value": 22.919629629696384
+      },
+      "oracle_answer": {
+        "value": 22.919629913905887
+      },
+      "comparison": {
+        "delta_arcsec": -0.0010231542077576705,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422580.673611111
+      },
+      "engine_answer": {
+        "value": 22.752697037070426
+      },
+      "oracle_answer": {
+        "value": 22.752697783016945
+      },
+      "comparison": {
+        "delta_arcsec": -0.002685407467595269,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423022.6666666665
+      },
+      "engine_answer": {
+        "value": 22.76741996861025
+      },
+      "oracle_answer": {
+        "value": 22.76742072254079
+      },
+      "comparison": {
+        "delta_arcsec": -0.0027141499543859027,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418301.159722222
+      },
+      "engine_answer": {
+        "value": 22.58128866197952
+      },
+      "oracle_answer": {
+        "value": 22.581289054637896
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014135701505324505,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2406667.8958333335
+      },
+      "engine_answer": {
+        "value": 22.143027643756128
+      },
+      "oracle_answer": {
+        "value": 22.14302802387105
+      },
+      "comparison": {
+        "delta_arcsec": -0.001368413721536399,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430842.6666666665
+      },
+      "engine_answer": {
+        "value": 23.06214377879801
+      },
+      "oracle_answer": {
+        "value": 23.062144422464435
+      },
+      "comparison": {
+        "delta_arcsec": -0.0023171991301751405,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2388516.5770833334
+      },
+      "engine_answer": {
+        "value": 21.45060967048667
+      },
+      "oracle_answer": {
+        "value": 21.450609761213112
+      },
+      "comparison": {
+        "delta_arcsec": -0.00032661518929444355,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2440923.7708333335
+      },
+      "engine_answer": {
+        "value": 23.453243466375508
+      },
+      "oracle_answer": {
+        "value": 23.453244981711137
+      },
+      "comparison": {
+        "delta_arcsec": -0.00545520826591428,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431992.0416666665
+      },
+      "engine_answer": {
+        "value": 23.104721820096387
+      },
+      "oracle_answer": {
+        "value": 23.104723105378486
+      },
+      "comparison": {
+        "delta_arcsec": -0.004627015557900904,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423912.548611111
+      },
+      "engine_answer": {
+        "value": 22.79754876924742
+      },
+      "oracle_answer": {
+        "value": 22.797549433086274
+      },
+      "comparison": {
+        "delta_arcsec": -0.00238981987479292,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2405193.36875
+      },
+      "engine_answer": {
+        "value": 22.081171268271024
+      },
+      "oracle_answer": {
+        "value": 22.08117202974567
+      },
+      "comparison": {
+        "delta_arcsec": -0.002741308722420399,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418481.3625
+      },
+      "engine_answer": {
+        "value": 22.588315112711975
+      },
+      "oracle_answer": {
+        "value": 22.58831454672548
+      },
+      "comparison": {
+        "delta_arcsec": 0.0020375513756221153,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2425703.423611111
+      },
+      "engine_answer": {
+        "value": 22.86506190706548
+      },
+      "oracle_answer": {
+        "value": 22.865063354667253
+      },
+      "comparison": {
+        "delta_arcsec": -0.005211366378432558,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2434675.3541666665
+      },
+      "engine_answer": {
+        "value": 23.215739123615126
+      },
+      "oracle_answer": {
+        "value": 23.21574112523399
+      },
+      "comparison": {
+        "delta_arcsec": -0.007205827908762785,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423393.0833333335
+      },
+      "engine_answer": {
+        "value": 22.77997003768391
+      },
+      "oracle_answer": {
+        "value": 22.779969953284553
+      },
+      "comparison": {
+        "delta_arcsec": 0.00030383768461206273,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2429093.3125
+      },
+      "engine_answer": {
+        "value": 23.00274116232005
+      },
+      "oracle_answer": {
+        "value": 23.002741265120584
+      },
+      "comparison": {
+        "delta_arcsec": -0.00037008192350640456,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424301.9583333335
+      },
+      "engine_answer": {
+        "value": 22.811322384798995
+      },
+      "oracle_answer": {
+        "value": 22.811323446679708
+      },
+      "comparison": {
+        "delta_arcsec": -0.0038227705672966295,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428819.625
+      },
+      "engine_answer": {
+        "value": 22.992327004275484
+      },
+      "oracle_answer": {
+        "value": 22.99232796801015
+      },
+      "comparison": {
+        "delta_arcsec": -0.0034694448018512958,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2420463.25
+      },
+      "engine_answer": {
+        "value": 22.67057828578445
+      },
+      "oracle_answer": {
+        "value": 22.67057878941938
+      },
+      "comparison": {
+        "delta_arcsec": -0.001813085745538956,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2368785.921527778
+      },
+      "disposition": "engine_error",
+      "reason": "ToolError('[-32602] Julian Day 2368785.921527778 is outside valid range [2378496.5, 2597641.5]')"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2409034.4520833334
+      },
+      "engine_answer": {
+        "value": 22.23485317258063
+      },
+      "oracle_answer": {
+        "value": 22.234853619894682
+      },
+      "comparison": {
+        "delta_arcsec": -0.0016103305824799463,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2401041.671527778
+      },
+      "engine_answer": {
+        "value": 21.9307736889085
+      },
+      "oracle_answer": {
+        "value": 21.93077373834661
+      },
+      "comparison": {
+        "delta_arcsec": -0.0001779771977794553,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424389.9166666665
+      },
+      "engine_answer": {
+        "value": 22.814851762704563
+      },
+      "oracle_answer": {
+        "value": 22.81485280336955
+      },
+      "comparison": {
+        "delta_arcsec": -0.003746393953463212,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2432887.7708333335
+      },
+      "engine_answer": {
+        "value": 23.140831180609318
+      },
+      "oracle_answer": {
+        "value": 23.140831538463264
+      },
+      "comparison": {
+        "delta_arcsec": -0.0012882742041142592,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424469.1041666665
+      },
+      "engine_answer": {
+        "value": 22.817061035420377
+      },
+      "oracle_answer": {
+        "value": 22.817061268572225
+      },
+      "comparison": {
+        "delta_arcsec": -0.0008393466529810212,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2408443.910416667
+      },
+      "engine_answer": {
+        "value": 22.21363872106263
+      },
+      "oracle_answer": {
+        "value": 22.213639492557174
+      },
+      "comparison": {
+        "delta_arcsec": -0.0027773803608965864,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2371045.0881944443
+      },
+      "disposition": "engine_error",
+      "reason": "ToolError('[-32602] Julian Day 2371045.0881944443 is outside valid range [2378496.5, 2597641.5]')"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2381702.8270833334
+      },
+      "engine_answer": {
+        "value": 21.190202242884983
+      },
+      "oracle_answer": {
+        "value": 21.190204101658864
+      },
+      "comparison": {
+        "delta_arcsec": -0.006691585973328529,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2440959.923611111
+      },
+      "engine_answer": {
+        "value": 23.455135157551886
+      },
+      "oracle_answer": {
+        "value": 23.455135016488082
+      },
+      "comparison": {
+        "delta_arcsec": 0.0005078296950955519,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2416541.5770833334
+      },
+      "engine_answer": {
+        "value": 22.518869111279088
+      },
+      "oracle_answer": {
+        "value": 22.518869210560798
+      },
+      "comparison": {
+        "delta_arcsec": -0.00035741415587153824,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2399177.1770833335
+      },
+      "engine_answer": {
+        "value": 21.853857079921198
+      },
+      "oracle_answer": {
+        "value": 21.85385808737624
+      },
+      "comparison": {
+        "delta_arcsec": -0.0036268381450099696,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423876.7916666665
+      },
+      "engine_answer": {
+        "value": 22.796636452497356
+      },
+      "oracle_answer": {
+        "value": 22.79663739803132
+      },
+      "comparison": {
+        "delta_arcsec": -0.0034039222640558364,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2441787.2395833335
+      },
+      "engine_answer": {
+        "value": 23.488382014468012
+      },
+      "oracle_answer": {
+        "value": 23.48838289960094
+      },
+      "comparison": {
+        "delta_arcsec": -0.0031864785370316895,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2407273.3541666665
+      },
+      "engine_answer": {
+        "value": 22.167668477203037
+      },
+      "oracle_answer": {
+        "value": 22.167668979807825
+      },
+      "comparison": {
+        "delta_arcsec": -0.0018093772368388272,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424491.5833333335
+      },
+      "engine_answer": {
+        "value": 22.818167104023555
+      },
+      "oracle_answer": {
+        "value": 22.818168016432946
+      },
+      "comparison": {
+        "delta_arcsec": -0.003284673806547289,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427739.4583333335
+      },
+      "engine_answer": {
+        "value": 22.950285036830454
+      },
+      "oracle_answer": {
+        "value": 22.950286184983597
+      },
+      "comparison": {
+        "delta_arcsec": -0.004133351312418654,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2417514.982638889
+      },
+      "engine_answer": {
+        "value": 22.55159540378174
+      },
+      "oracle_answer": {
+        "value": 22.5515956120917
+      },
+      "comparison": {
+        "delta_arcsec": -0.0007499158542145778,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2432127.375
+      },
+      "engine_answer": {
+        "value": 23.109657428565846
+      },
+      "oracle_answer": {
+        "value": 23.10965802029806
+      },
+      "comparison": {
+        "delta_arcsec": -0.0021302359684227667,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431711.871527778
+      },
+      "engine_answer": {
+        "value": 23.093912660100962
+      },
+      "oracle_answer": {
+        "value": 23.093912480290697
+      },
+      "comparison": {
+        "delta_arcsec": 0.0006473169520404554,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426551.075
+      },
+      "engine_answer": {
+        "value": 22.9010382676745
+      },
+      "oracle_answer": {
+        "value": 22.901038623674445
+      },
+      "comparison": {
+        "delta_arcsec": -0.0012815997990855976,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2436707.5416666665
+      },
+      "engine_answer": {
+        "value": 23.290258561806056
+      },
+      "oracle_answer": {
+        "value": 23.290258785246813
+      },
+      "comparison": {
+        "delta_arcsec": -0.0008043867268270333,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2416611.3625
+      },
+      "engine_answer": {
+        "value": 22.520584780334058
+      },
+      "oracle_answer": {
+        "value": 22.520586076206023
+      },
+      "comparison": {
+        "delta_arcsec": -0.004665139071846625,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418418.625
+      },
+      "engine_answer": {
+        "value": 22.585431455224665
+      },
+      "oracle_answer": {
+        "value": 22.58543272749408
+      },
+      "comparison": {
+        "delta_arcsec": -0.004580169894552455,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2413238.9791666665
+      },
+      "engine_answer": {
+        "value": 22.393290919127026
+      },
+      "oracle_answer": {
+        "value": 22.393292034224945
+      },
+      "comparison": {
+        "delta_arcsec": -0.004014352511205743,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2417078.125
+      },
+      "engine_answer": {
+        "value": 22.53702185840815
+      },
+      "oracle_answer": {
+        "value": 22.537022623506758
+      },
+      "comparison": {
+        "delta_arcsec": -0.002754354990486263,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430016.375
+      },
+      "engine_answer": {
+        "value": 23.034573601563853
+      },
+      "oracle_answer": {
+        "value": 23.034573842652748
+      },
+      "comparison": {
+        "delta_arcsec": -0.0008679200206529458,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428444.875
+      },
+      "engine_answer": {
+        "value": 22.97830640845347
+      },
+      "oracle_answer": {
+        "value": 22.978307693852795
+      },
+      "comparison": {
+        "delta_arcsec": -0.004627437569126869,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2407134.9520833334
+      },
+      "engine_answer": {
+        "value": 22.16201049260981
+      },
+      "oracle_answer": {
+        "value": 22.162011686688913
+      },
+      "comparison": {
+        "delta_arcsec": -0.004298684774539652,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2437337.472222222
+      },
+      "engine_answer": {
+        "value": 23.312237052590937
+      },
+      "oracle_answer": {
+        "value": 23.312238297364345
+      },
+      "comparison": {
+        "delta_arcsec": -0.004481184268456673,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427545.5
+      },
+      "engine_answer": {
+        "value": 22.94236334741323
+      },
+      "oracle_answer": {
+        "value": 22.94236378391751
+      },
+      "comparison": {
+        "delta_arcsec": -0.0015714154073975806,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2343443.4381944444
+      },
+      "disposition": "engine_error",
+      "reason": "ToolError('[-32602] Julian Day 2343443.4381944444 is outside valid range [2378496.5, 2597641.5]')"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2433413.8694444443
+      },
+      "engine_answer": {
+        "value": 23.16303241181981
+      },
+      "oracle_answer": {
+        "value": 23.1630333275397
+      },
+      "comparison": {
+        "delta_arcsec": -0.0032965916076932444,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423402.1319444445
+      },
+      "engine_answer": {
+        "value": 22.780396847539542
+      },
+      "oracle_answer": {
+        "value": 22.780396686315598
+      },
+      "comparison": {
+        "delta_arcsec": 0.0005804061999015175,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2390920.99375
+      },
+      "engine_answer": {
+        "value": 21.534817729917158
+      },
+      "oracle_answer": {
+        "value": 21.534818484315473
+      },
+      "comparison": {
+        "delta_arcsec": -0.0027158339321431413,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428889.0930555556
+      },
+      "engine_answer": {
+        "value": 22.995165703647874
+      },
+      "oracle_answer": {
+        "value": 22.995165995218148
+      },
+      "comparison": {
+        "delta_arcsec": -0.0010496529853298853,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424665.1666666665
+      },
+      "engine_answer": {
+        "value": 22.82444316598966
+      },
+      "oracle_answer": {
+        "value": 22.824442922936747
+      },
+      "comparison": {
+        "delta_arcsec": 0.0008749904864657765,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430135.9756944445
+      },
+      "engine_answer": {
+        "value": 23.038013217975386
+      },
+      "oracle_answer": {
+        "value": 23.03801412873029
+      },
+      "comparison": {
+        "delta_arcsec": -0.0032787176493798142,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422761.0104166665
+      },
+      "engine_answer": {
+        "value": 22.758928865722044
+      },
+      "oracle_answer": {
+        "value": 22.75892894430778
+      },
+      "comparison": {
+        "delta_arcsec": -0.0002829086469091635,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426711.8208333333
+      },
+      "engine_answer": {
+        "value": 22.9076278328205
+      },
+      "oracle_answer": {
+        "value": 22.907628015002643
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006558557217317684,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2405638.8506944445
+      },
+      "engine_answer": {
+        "value": 22.098948838083935
+      },
+      "oracle_answer": {
+        "value": 22.098949895319326
+      },
+      "comparison": {
+        "delta_arcsec": -0.0038060474068402073,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418679.2916666665
+      },
+      "engine_answer": {
+        "value": 22.596243512966403
+      },
+      "oracle_answer": {
+        "value": 22.59624432965582
+      },
+      "comparison": {
+        "delta_arcsec": -0.0029400819059333116,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2425945.909722222
+      },
+      "engine_answer": {
+        "value": 22.874829616503654
+      },
+      "oracle_answer": {
+        "value": 22.874830676483523
+      },
+      "comparison": {
+        "delta_arcsec": -0.00381592752916049,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431576.2243055557
+      },
+      "engine_answer": {
+        "value": 23.088421639884725
+      },
+      "oracle_answer": {
+        "value": 23.08842246290648
+      },
+      "comparison": {
+        "delta_arcsec": -0.0029628783138946346,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2406353.829861111
+      },
+      "engine_answer": {
+        "value": 22.12916632766734
+      },
+      "oracle_answer": {
+        "value": 22.129167560354997
+      },
+      "comparison": {
+        "delta_arcsec": -0.004437675571011823,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2432700.5
+      },
+      "engine_answer": {
+        "value": 23.133113773559653
+      },
+      "oracle_answer": {
+        "value": 23.133114149830153
+      },
+      "comparison": {
+        "delta_arcsec": -0.0013545737971298877,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428051.6041666665
+      },
+      "engine_answer": {
+        "value": 22.96331358837061
+      },
+      "oracle_answer": {
+        "value": 22.963313853229103
+      },
+      "comparison": {
+        "delta_arcsec": -0.0009534905728969534,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2433615.1611111113
+      },
+      "engine_answer": {
+        "value": 23.17164454265661
+      },
+      "oracle_answer": {
+        "value": 23.17164594171858
+      },
+      "comparison": {
+        "delta_arcsec": -0.005036623086596137,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428482.050694444
+      },
+      "engine_answer": {
+        "value": 22.979564154900523
+      },
+      "oracle_answer": {
+        "value": 22.979564654016933
+      },
+      "comparison": {
+        "delta_arcsec": -0.0017968190775263793,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2403672.202777778
+      },
+      "engine_answer": {
+        "value": 22.023461621073896
+      },
+      "oracle_answer": {
+        "value": 22.02346259111565
+      },
+      "comparison": {
+        "delta_arcsec": -0.003492150312922604,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2415064.8270833334
+      },
+      "engine_answer": {
+        "value": 22.46733669056942
+      },
+      "oracle_answer": {
+        "value": 22.46733816656183
+      },
+      "comparison": {
+        "delta_arcsec": -0.005313572673060207,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424950.5833333335
+      },
+      "engine_answer": {
+        "value": 22.835555882337015
+      },
+      "oracle_answer": {
+        "value": 22.835556170821075
+      },
+      "comparison": {
+        "delta_arcsec": -0.0010385426151060528,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2409311.1923611113
+      },
+      "engine_answer": {
+        "value": 22.24376386246491
+      },
+      "oracle_answer": {
+        "value": 22.243765438641528
+      },
+      "comparison": {
+        "delta_arcsec": -0.005674235826802487,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2406971.4520833334
+      },
+      "engine_answer": {
+        "value": 22.155358508979386
+      },
+      "oracle_answer": {
+        "value": 22.15535897507425
+      },
+      "comparison": {
+        "delta_arcsec": -0.0016779415105361295,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2436764.9583333335
+      },
+      "engine_answer": {
+        "value": 23.292722982968677
+      },
+      "oracle_answer": {
+        "value": 23.29272241058484
+      },
+      "comparison": {
+        "delta_arcsec": 0.002060581810781059,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428122.840277778
+      },
+      "engine_answer": {
+        "value": 22.96571781080162
+      },
+      "oracle_answer": {
+        "value": 22.965719372351632
+      },
+      "comparison": {
+        "delta_arcsec": -0.0056215800398717874,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2442981.690972222
+      },
+      "engine_answer": {
+        "value": 23.532884947627657
+      },
+      "oracle_answer": {
+        "value": 23.53288595632215
+      },
+      "comparison": {
+        "delta_arcsec": -0.003631300175754859,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431839.2604166665
+      },
+      "engine_answer": {
+        "value": 23.099173573542753
+      },
+      "oracle_answer": {
+        "value": 23.09917468382936
+      },
+      "comparison": {
+        "delta_arcsec": -0.003997031787150718,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2433770.90625
+      },
+      "engine_answer": {
+        "value": 23.178148229397916
+      },
+      "oracle_answer": {
+        "value": 23.178148823918704
+      },
+      "comparison": {
+        "delta_arcsec": -0.002140274837358902,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2387454.7020833334
+      },
+      "engine_answer": {
+        "value": 21.41189872981799
+      },
+      "oracle_answer": {
+        "value": 21.4118994421188
+      },
+      "comparison": {
+        "delta_arcsec": -0.0025642829044159043,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2419183.777777778
+      },
+      "engine_answer": {
+        "value": 22.61641999170314
+      },
+      "oracle_answer": {
+        "value": 22.616419700925086
+      },
+      "comparison": {
+        "delta_arcsec": 0.0010468009946862367,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435736.3125
+      },
+      "engine_answer": {
+        "value": 23.25681579666726
+      },
+      "oracle_answer": {
+        "value": 23.25681625431098
+      },
+      "comparison": {
+        "delta_arcsec": -0.0016475173865160286,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2437889.1625
+      },
+      "engine_answer": {
+        "value": 23.331375635044857
+      },
+      "oracle_answer": {
+        "value": 23.33137630740531
+      },
+      "comparison": {
+        "delta_arcsec": -0.0024204976327268923,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439189.404861111
+      },
+      "engine_answer": {
+        "value": 23.38083193169323
+      },
+      "oracle_answer": {
+        "value": 23.380832006319558
+      },
+      "comparison": {
+        "delta_arcsec": -0.0002686547816210805,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431941.1902777776
+      },
+      "engine_answer": {
+        "value": 23.102326268384733
+      },
+      "oracle_answer": {
+        "value": 23.102327154961003
+      },
+      "comparison": {
+        "delta_arcsec": -0.003191674572633474,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2429971.8256944446
+      },
+      "engine_answer": {
+        "value": 23.032577325815147
+      },
+      "oracle_answer": {
+        "value": 23.03257690623992
+      },
+      "comparison": {
+        "delta_arcsec": 0.0015104708140256662,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427234.8680555555
+      },
+      "engine_answer": {
+        "value": 22.929647974836392
+      },
+      "oracle_answer": {
+        "value": 22.92964894217003
+      },
+      "comparison": {
+        "delta_arcsec": -0.0034824010938905303,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422448.6666666665
+      },
+      "engine_answer": {
+        "value": 22.7476141345676
+      },
+      "oracle_answer": {
+        "value": 22.747615463988122
+      },
+      "comparison": {
+        "delta_arcsec": -0.004785913885996251,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2417611.910416667
+      },
+      "engine_answer": {
+        "value": 22.55581976870579
+      },
+      "oracle_answer": {
+        "value": 22.555820589809223
+      },
+      "comparison": {
+        "delta_arcsec": -0.0029559723628835854,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2443857.1277777776
+      },
+      "engine_answer": {
+        "value": 23.56229845698073
+      },
+      "oracle_answer": {
+        "value": 23.562299080466875
+      },
+      "comparison": {
+        "delta_arcsec": -0.0022445501201673324,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2437696.7916666665
+      },
+      "engine_answer": {
+        "value": 23.324632884665096
+      },
+      "oracle_answer": {
+        "value": 23.32463427643634
+      },
+      "comparison": {
+        "delta_arcsec": -0.005010376472114331,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435196.4479166665
+      },
+      "engine_answer": {
+        "value": 23.236636295982574
+      },
+      "oracle_answer": {
+        "value": 23.236636740928635
+      },
+      "comparison": {
+        "delta_arcsec": -0.001601805817585955,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439992.015972222
+      },
+      "engine_answer": {
+        "value": 23.41365717242501
+      },
+      "oracle_answer": {
+        "value": 23.413657657932863
+      },
+      "comparison": {
+        "delta_arcsec": -0.0017478282629213027,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2417801.03125
+      },
+      "engine_answer": {
+        "value": 22.562659849668915
+      },
+      "oracle_answer": {
+        "value": 22.562660954346175
+      },
+      "comparison": {
+        "delta_arcsec": -0.003976838135599792,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438608.965277778
+      },
+      "engine_answer": {
+        "value": 23.357871046804135
+      },
+      "oracle_answer": {
+        "value": 23.357872019019663
+      },
+      "comparison": {
+        "delta_arcsec": -0.003499975899501351,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423922.65625
+      },
+      "engine_answer": {
+        "value": 22.797887303847904
+      },
+      "oracle_answer": {
+        "value": 22.797887918946255
+      },
+      "comparison": {
+        "delta_arcsec": -0.002214354063312385,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438214.8229166665
+      },
+      "engine_answer": {
+        "value": 23.342920171939898
+      },
+      "oracle_answer": {
+        "value": 23.342920122981162
+      },
+      "comparison": {
+        "delta_arcsec": 0.00017625144863586684,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2417976.9791666665
+      },
+      "engine_answer": {
+        "value": 22.56929947144769
+      },
+      "oracle_answer": {
+        "value": 22.569299972006483
+      },
+      "comparison": {
+        "delta_arcsec": -0.0018020116598904679,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2414031.75
+      },
+      "engine_answer": {
+        "value": 22.42592369380769
+      },
+      "oracle_answer": {
+        "value": 22.425923505326796
+      },
+      "comparison": {
+        "delta_arcsec": 0.0006785312152146616,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2443508.861111111
+      },
+      "engine_answer": {
+        "value": 23.550792357128643
+      },
+      "oracle_answer": {
+        "value": 23.550792549340297
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006919619565337598,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2443733.398611111
+      },
+      "engine_answer": {
+        "value": 23.558517061306567
+      },
+      "oracle_answer": {
+        "value": 23.558517443024012
+      },
+      "comparison": {
+        "delta_arcsec": -0.0013741828027491465,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426164.9375
+      },
+      "engine_answer": {
+        "value": 22.884455065149343
+      },
+      "oracle_answer": {
+        "value": 22.884455198749503
+      },
+      "comparison": {
+        "delta_arcsec": -0.00048096057696511707,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439532.158333333
+      },
+      "engine_answer": {
+        "value": 23.395058965753403
+      },
+      "oracle_answer": {
+        "value": 23.39505889435987
+      },
+      "comparison": {
+        "delta_arcsec": 0.000257016718308023,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435715.714583333
+      },
+      "engine_answer": {
+        "value": 23.25628006992344
+      },
+      "oracle_answer": {
+        "value": 23.25628026279374
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006943330774333845,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2419726.5729166665
+      },
+      "engine_answer": {
+        "value": 22.639250030472734
+      },
+      "oracle_answer": {
+        "value": 22.639250214234462
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006615422194045095,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2416913.80625
+      },
+      "engine_answer": {
+        "value": 22.531300638695367
+      },
+      "oracle_answer": {
+        "value": 22.531301125432652
+      },
+      "comparison": {
+        "delta_arcsec": -0.001752254226516925,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2419219.9375
+      },
+      "engine_answer": {
+        "value": 22.618426924774543
+      },
+      "oracle_answer": {
+        "value": 22.61842709915565
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006277719847957997,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2405057.11875
+      },
+      "engine_answer": {
+        "value": 22.07526357836544
+      },
+      "oracle_answer": {
+        "value": 22.07526474105614
+      },
+      "comparison": {
+        "delta_arcsec": -0.004185686523783261,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2414003.4520833334
+      },
+      "engine_answer": {
+        "value": 22.42508494065553
+      },
+      "oracle_answer": {
+        "value": 22.425085367127576
+      },
+      "comparison": {
+        "delta_arcsec": -0.0015352993628425793,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2418280.2291666665
+      },
+      "engine_answer": {
+        "value": 22.580107683829095
+      },
+      "oracle_answer": {
+        "value": 22.580108433191388
+      },
+      "comparison": {
+        "delta_arcsec": -0.002697704255183453,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2442876.4930555555
+      },
+      "engine_answer": {
+        "value": 23.528815388234566
+      },
+      "oracle_answer": {
+        "value": 23.528815673602548
+      },
+      "comparison": {
+        "delta_arcsec": -0.001027324734081958,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2431873.4208333334
+      },
+      "engine_answer": {
+        "value": 23.100364124999118
+      },
+      "oracle_answer": {
+        "value": 23.10036461721574
+      },
+      "comparison": {
+        "delta_arcsec": -0.0017719798364623784,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2424482.1979166665
+      },
+      "engine_answer": {
+        "value": 22.817647891402512
+      },
+      "oracle_answer": {
+        "value": 22.81764867072038
+      },
+      "comparison": {
+        "delta_arcsec": -0.0028055443280550207,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422134.9166666665
+      },
+      "engine_answer": {
+        "value": 22.73677462299517
+      },
+      "oracle_answer": {
+        "value": 22.736775271198184
+      },
+      "comparison": {
+        "delta_arcsec": -0.0023335308469540905,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2356889.4291666667
+      },
+      "disposition": "engine_error",
+      "reason": "ToolError('[-32602] Julian Day 2356889.4291666667 is outside valid range [2378496.5, 2597641.5]')"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438330.9166666665
+      },
+      "engine_answer": {
+        "value": 23.34675891871616
+      },
+      "oracle_answer": {
+        "value": 23.346759268744556
+      },
+      "comparison": {
+        "delta_arcsec": -0.0012601022305602783,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2405740.36875
+      },
+      "engine_answer": {
+        "value": 22.103680367159907
+      },
+      "oracle_answer": {
+        "value": 22.103681155048967
+      },
+      "comparison": {
+        "delta_arcsec": -0.0028364006183778656,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423588.65625
+      },
+      "engine_answer": {
+        "value": 22.786856542092657
+      },
+      "oracle_answer": {
+        "value": 22.786856534114058
+      },
+      "comparison": {
+        "delta_arcsec": 2.8722956812998746e-05,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2414217.4895833335
+      },
+      "engine_answer": {
+        "value": 22.433552127083004
+      },
+      "oracle_answer": {
+        "value": 22.433552962713573
+      },
+      "comparison": {
+        "delta_arcsec": -0.0030082700490652314,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438277.9756944445
+      },
+      "engine_answer": {
+        "value": 23.345310984625616
+      },
+      "oracle_answer": {
+        "value": 23.345312516047525
+      },
+      "comparison": {
+        "delta_arcsec": -0.005513118870226208,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2413840.722916667
+      },
+      "engine_answer": {
+        "value": 22.418038833717112
+      },
+      "oracle_answer": {
+        "value": 22.418039445475266
+      },
+      "comparison": {
+        "delta_arcsec": -0.0022023293524853216,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2392481.1958333333
+      },
+      "engine_answer": {
+        "value": 21.59776174518591
+      },
+      "oracle_answer": {
+        "value": 21.59776319201202
+      },
+      "comparison": {
+        "delta_arcsec": -0.005208574000903354,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2415896.75
+      },
+      "engine_answer": {
+        "value": 22.496434707028364
+      },
+      "oracle_answer": {
+        "value": 22.49643628102853
+      },
+      "comparison": {
+        "delta_arcsec": -0.005666400596737731,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2433607.225
+      },
+      "engine_answer": {
+        "value": 23.171160883946552
+      },
+      "oracle_answer": {
+        "value": 23.171161558362833
+      },
+      "comparison": {
+        "delta_arcsec": -0.0024278986117565182,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426910.915972222
+      },
+      "engine_answer": {
+        "value": 22.916279565227196
+      },
+      "oracle_answer": {
+        "value": 22.916280325618136
+      },
+      "comparison": {
+        "delta_arcsec": -0.0027374073823693834,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2430720.8041666667
+      },
+      "engine_answer": {
+        "value": 23.058274844617056
+      },
+      "oracle_answer": {
+        "value": 23.058275702783025
+      },
+      "comparison": {
+        "delta_arcsec": -0.003089397486633061,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435496.107638889
+      },
+      "engine_answer": {
+        "value": 23.24830736633617
+      },
+      "oracle_answer": {
+        "value": 23.248306999722875
+      },
+      "comparison": {
+        "delta_arcsec": 0.001319807866195788,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2399089.722916667
+      },
+      "engine_answer": {
+        "value": 21.84942257131707
+      },
+      "oracle_answer": {
+        "value": 21.849423115678864
+      },
+      "comparison": {
+        "delta_arcsec": -0.001959702454712442,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428008.1458333335
+      },
+      "engine_answer": {
+        "value": 22.961721873353603
+      },
+      "oracle_answer": {
+        "value": 22.96172263948371
+      },
+      "comparison": {
+        "delta_arcsec": -0.002758068384878243,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426115.769444444
+      },
+      "engine_answer": {
+        "value": 22.882022619539615
+      },
+      "oracle_answer": {
+        "value": 22.882023320112953
+      },
+      "comparison": {
+        "delta_arcsec": -0.0025220640168299724,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2428696.6805555555
+      },
+      "engine_answer": {
+        "value": 22.988006213983496
+      },
+      "oracle_answer": {
+        "value": 22.988006860381336
+      },
+      "comparison": {
+        "delta_arcsec": -0.002327032224513914,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426418.5520833335
+      },
+      "engine_answer": {
+        "value": 22.895159910114728
+      },
+      "oracle_answer": {
+        "value": 22.89516087611611
+      },
+      "comparison": {
+        "delta_arcsec": -0.0034776049687934574,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2434400.5104166665
+      },
+      "engine_answer": {
+        "value": 23.205217411210146
+      },
+      "oracle_answer": {
+        "value": 23.205217496638465
+      },
+      "comparison": {
+        "delta_arcsec": -0.00030754194710880256,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2429568.7083333335
+      },
+      "engine_answer": {
+        "value": 23.018660431973952
+      },
+      "oracle_answer": {
+        "value": 23.018661751165403
+      },
+      "comparison": {
+        "delta_arcsec": -0.004749089224276304,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427632.089583333
+      },
+      "engine_answer": {
+        "value": 22.946496184915983
+      },
+      "oracle_answer": {
+        "value": 22.94649563345669
+      },
+      "comparison": {
+        "delta_arcsec": 0.001985253459224623,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2401745.8270833334
+      },
+      "engine_answer": {
+        "value": 21.957683247635853
+      },
+      "oracle_answer": {
+        "value": 21.9576836492279
+      },
+      "comparison": {
+        "delta_arcsec": -0.001445731368221459,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2443045.7256944445
+      },
+      "engine_answer": {
+        "value": 23.53476915289533
+      },
+      "oracle_answer": {
+        "value": 23.53477028870299
+      },
+      "comparison": {
+        "delta_arcsec": -0.004088907580523937,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423876.998611111
+      },
+      "engine_answer": {
+        "value": 22.796637739967665
+      },
+      "oracle_answer": {
+        "value": 22.796638764168243
+      },
+      "comparison": {
+        "delta_arcsec": -0.0036871220828516016,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2451544.1666666665
+      },
+      "engine_answer": {
+        "value": 23.85319125957884
+      },
+      "oracle_answer": {
+        "value": 23.85319202958225
+      },
+      "comparison": {
+        "delta_arcsec": -0.002772012277318936,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2440064.6979166665
+      },
+      "engine_answer": {
+        "value": 23.41738269268257
+      },
+      "oracle_answer": {
+        "value": 23.417383703092806
+      },
+      "comparison": {
+        "delta_arcsec": -0.0036374768541236335,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438197.986111111
+      },
+      "engine_answer": {
+        "value": 23.342106868245597
+      },
+      "oracle_answer": {
+        "value": 23.342106718313556
+      },
+      "comparison": {
+        "delta_arcsec": 0.0005397553508146302,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2400506.910416667
+      },
+      "engine_answer": {
+        "value": 21.909273182736865
+      },
+      "oracle_answer": {
+        "value": 21.90927352451896
+      },
+      "comparison": {
+        "delta_arcsec": -0.0012304155390552296,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422452.638888889
+      },
+      "engine_answer": {
+        "value": 22.747814705074987
+      },
+      "oracle_answer": {
+        "value": 22.747816037101668
+      },
+      "comparison": {
+        "delta_arcsec": -0.0047952960514408005,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2438486.40625
+      },
+      "engine_answer": {
+        "value": 23.352792429501363
+      },
+      "oracle_answer": {
+        "value": 23.352793359895152
+      },
+      "comparison": {
+        "delta_arcsec": -0.003349417639242347,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2420163.09375
+      },
+      "engine_answer": {
+        "value": 22.65857610608478
+      },
+      "oracle_answer": {
+        "value": 22.658575760308263
+      },
+      "comparison": {
+        "delta_arcsec": 0.0012447954603089784,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2440298.8368055555
+      },
+      "engine_answer": {
+        "value": 23.42706447813171
+      },
+      "oracle_answer": {
+        "value": 23.427066013639834
+      },
+      "comparison": {
+        "delta_arcsec": -0.005527829240747906,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2411893.6006944445
+      },
+      "engine_answer": {
+        "value": 22.336670923566853
+      },
+      "oracle_answer": {
+        "value": 22.336671104844836
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006526007382490207,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2423099.0833333335
+      },
+      "engine_answer": {
+        "value": 22.77075417589849
+      },
+      "oracle_answer": {
+        "value": 22.770754767881492
+      },
+      "comparison": {
+        "delta_arcsec": -0.0021311388110234475,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2415843.74375
+      },
+      "engine_answer": {
+        "value": 22.49474189659868
+      },
+      "oracle_answer": {
+        "value": 22.494743506928273
+      },
+      "comparison": {
+        "delta_arcsec": -0.005797186538814003,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2415142.785416667
+      },
+      "engine_answer": {
+        "value": 22.469509576749942
+      },
+      "oracle_answer": {
+        "value": 22.46950997893427
+      },
+      "comparison": {
+        "delta_arcsec": -0.0014478635762316117,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2373813.3173611113
+      },
+      "disposition": "engine_error",
+      "reason": "ToolError('[-32602] Julian Day 2373813.3173611113 is outside valid range [2378496.5, 2597641.5]')"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2405821.6319444445
+      },
+      "engine_answer": {
+        "value": 22.10639509627529
+      },
+      "oracle_answer": {
+        "value": 22.106395933987066
+      },
+      "comparison": {
+        "delta_arcsec": -0.003015762398206334,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2439568.640277778
+      },
+      "engine_answer": {
+        "value": 23.396152996480918
+      },
+      "oracle_answer": {
+        "value": 23.39615388963215
+      },
+      "comparison": {
+        "delta_arcsec": -0.0032153444323057556,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2427527.9375
+      },
+      "engine_answer": {
+        "value": 22.941769965372846
+      },
+      "oracle_answer": {
+        "value": 22.941770536366676
+      },
+      "comparison": {
+        "delta_arcsec": -0.00205557778798493,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2416732.53125
+      },
+      "engine_answer": {
+        "value": 22.52517650376668
+      },
+      "oracle_answer": {
+        "value": 22.52517748171585
+      },
+      "comparison": {
+        "delta_arcsec": -0.0035206170139190363,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2420204.9791666665
+      },
+      "engine_answer": {
+        "value": 22.660079922497033
+      },
+      "oracle_answer": {
+        "value": 22.66008022382728
+      },
+      "comparison": {
+        "delta_arcsec": -0.001084788885918897,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2441055.7291666665
+      },
+      "engine_answer": {
+        "value": 23.45864677139669
+      },
+      "oracle_answer": {
+        "value": 23.45864814616908
+      },
+      "comparison": {
+        "delta_arcsec": -0.004949180598146086,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435740.0833333335
+      },
+      "engine_answer": {
+        "value": 23.256837102712723
+      },
+      "oracle_answer": {
+        "value": 23.256837540570633
+      },
+      "comparison": {
+        "delta_arcsec": -0.0015762884757464235,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2435662.5368055557
+      },
+      "engine_answer": {
+        "value": 23.254358590610313
+      },
+      "oracle_answer": {
+        "value": 23.25435907516278
+      },
+      "comparison": {
+        "delta_arcsec": -0.0017443888765455995,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2422383.847222222
+      },
+      "engine_answer": {
+        "value": 22.74601861715177
+      },
+      "oracle_answer": {
+        "value": 22.746018785653366
+      },
+      "comparison": {
+        "delta_arcsec": -0.0006066057480325071,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2426155.0208333335
+      },
+      "engine_answer": {
+        "value": 22.884008387258177
+      },
+      "oracle_answer": {
+        "value": 22.88400852298988
+      },
+      "comparison": {
+        "delta_arcsec": -0.0004886341315568643,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    },
+    {
+      "case": {
+        "kind": "ayanamsha",
+        "jd_ut": 2395469.948611111
+      },
+      "engine_answer": {
+        "value": 21.7159949688323
+      },
+      "oracle_answer": {
+        "value": 21.715996577480748
+      },
+      "comparison": {
+        "delta_arcsec": -0.005791134407218124,
+        "disposition": "pass"
+      },
+      "disposition": "pass"
+    }
+  ]
+}

@@ -7,9 +7,12 @@ __pycache__/
 .ruff_cache/
 
 # Run artifacts. Reproducible from a run's own recorded provenance; stays
-# out of git until promoted to a written finding.
+# out of git until promoted to a written finding. results/canonical/ is
+# the one deliberate exception -- the immutable raw record every figure
+# in docs/tiers.md traces back to, committed on purpose.
 results/*
 !results/.gitkeep
+!results/canonical/
 
 # Laundered handoff reports exchanged with Vedaksha's own team — working
 # correspondence, not repo content. Substance that matters long-term goes

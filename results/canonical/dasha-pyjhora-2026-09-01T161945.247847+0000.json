@@ -1,0 +1,1646 @@
+{
+  "generated_at": "2026-09-01T16:19:45.247847+00:00",
+  "python": "3.14.6",
+  "tier": "dasha",
+  "case_params": {
+    "birth_bank": {
+      "source_size": 15790,
+      "count": 200,
+      "seed": 42,
+      "source": "data/vedastro-15000-famous-births.csv"
+    }
+  },
+  "engine": {
+    "name": "Vedaksha",
+    "version": "9.1.0",
+    "settings": {
+      "ayanamsha": "IndianOfficial",
+      "karaka_scheme": "8"
+    }
+  },
+  "oracle": {
+    "name": "PyJHora",
+    "version": "4.8.7",
+    "settings": {
+      "ayanamsha": "LAHIRI \u2014 global module state, see module docstring",
+      "independence_from_swisseph": "Measured, not confirmed \u2014 see module docstring",
+      "combustion": "Binary (Combust/None only), no DeeplyCombust distinction",
+      "location": "synthetic/neutral (0.0 deg, 0.0 deg, UTC)",
+      "chara_dasha": "Real location required. Narayana dasha exists in PyJHora but is not wired \u2014 Chara is the pilot",
+      "karakas": "8-scheme via get_chara_karakas \u2014 compare against Engine(karaka_scheme=\"8\"); rank 4 emitted as Vedaksha's own \"Matrikaraka\", not PyJHora's \"Maitrikaraka\"",
+      "scope": "position/ayanamsha not built here \u2014 a separate scope decision, not a circularity finding"
+    }
+  },
+  "counts": {
+    "pass": 0,
+    "review": 0,
+    "fail": 0,
+    "comparison_invalid": 0,
+    "oracle_unsupported": 200,
+    "oracle_error": 0,
+    "engine_error": 0
+  },
+  "case_count": 200,
+  "rows": [
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2437779.85
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2437293.826388889
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2411318.0243055555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2412291.871527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439430.6354166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2436655.667361111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423148.3958333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2401344.785416667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2392437.4520833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2425450.3680555555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427159.1666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424214.4583333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2391641.046527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2399043.546527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427549.1569444444
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2425935.888888889
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2449336.0694444445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427112.59375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2400263.0048611113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2387419.5048611113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2420900.1666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423425.25
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426510.6631944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431960.7805555556
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2442215.3229166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2447991.18125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418673.954861111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2384758.0256944443
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439706.236111111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427430.96875
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430185.3333333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427329.8958333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2447009.290972222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2425779.6305555557
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431283.0069444445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2409010.9736111113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430382.9444444445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430120.3229166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430325.09375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427004.972222222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422580.673611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423022.6666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418301.159722222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2406667.8958333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430842.6666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2388516.5770833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2440923.7708333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431992.0416666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423912.548611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2405193.36875
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418481.3625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2425703.423611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2434675.3541666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423393.0833333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2429093.3125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424301.9583333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428819.625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2420463.25
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2368785.921527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2409034.4520833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2401041.671527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424389.9166666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2432887.7708333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424469.1041666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2408443.910416667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2371045.0881944443
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2381702.8270833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2440959.923611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2416541.5770833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2399177.1770833335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423876.7916666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2441787.2395833335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2407273.3541666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424491.5833333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427739.4583333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2417514.982638889
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2432127.375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431711.871527778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426551.075
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2436707.5416666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2416611.3625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418418.625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2413238.9791666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2417078.125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430016.375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428444.875
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2407134.9520833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2437337.472222222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427545.5
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2343443.4381944444
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2433413.8694444443
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423402.1319444445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2390920.99375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428889.0930555556
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424665.1666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430135.9756944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422761.0104166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426711.8208333333
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2405638.8506944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418679.2916666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2425945.909722222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431576.2243055557
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2406353.829861111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2432700.5
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428051.6041666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2433615.1611111113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428482.050694444
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2403672.202777778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2415064.8270833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424950.5833333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2409311.1923611113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2406971.4520833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2436764.9583333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428122.840277778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2442981.690972222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431839.2604166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2433770.90625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2387454.7020833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2419183.777777778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435736.3125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2437889.1625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439189.404861111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431941.1902777776
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2429971.8256944446
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427234.8680555555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422448.6666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2417611.910416667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2443857.1277777776
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2437696.7916666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435196.4479166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439992.015972222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2417801.03125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438608.965277778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423922.65625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438214.8229166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2417976.9791666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2414031.75
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2443508.861111111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2443733.398611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426164.9375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439532.158333333
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435715.714583333
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2419726.5729166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2416913.80625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2419219.9375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2405057.11875
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2414003.4520833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2418280.2291666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2442876.4930555555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2431873.4208333334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2424482.1979166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422134.9166666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2356889.4291666667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438330.9166666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2405740.36875
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423588.65625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2414217.4895833335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438277.9756944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2413840.722916667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2392481.1958333333
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2415896.75
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2433607.225
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426910.915972222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2430720.8041666667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435496.107638889
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2399089.722916667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428008.1458333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426115.769444444
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2428696.6805555555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426418.5520833335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2434400.5104166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2429568.7083333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427632.089583333
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2401745.8270833334
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2443045.7256944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423876.998611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2451544.1666666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2440064.6979166665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438197.986111111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2400506.910416667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422452.638888889
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2438486.40625
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2420163.09375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2440298.8368055555
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2411893.6006944445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2423099.0833333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2415843.74375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2415142.785416667
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2373813.3173611113
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2405821.6319444445
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2439568.640277778
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2427527.9375
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2416732.53125
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2420204.9791666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2441055.7291666665
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435740.0833333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2435662.5368055557
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2422383.847222222
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2426155.0208333335
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    },
+    {
+      "case": {
+        "kind": "dasha",
+        "jd_ut": 2395469.948611111
+      },
+      "disposition": "oracle_unsupported",
+      "reason": "PyJHora adapter does not answer kind='dasha' \u2014 see settings()."
+    }
+  ]
+}

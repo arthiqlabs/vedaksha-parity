@@ -1,0 +1,52 @@
+# vedaksha-parity run report
+
+**Tier:** `drishti`  
+**Engine:** Vedaksha 9.1.0  
+**Oracle:** IMCCE INPOP21a skyfield 1.55 + INPOP21a (inpop21a.bsp)  
+**Generated:** 2026-09-01T16:19:09.533300+00:00  
+**Python:** 3.14.6
+
+## Case parameters
+
+- **birth_bank:** source_size=15790, count=200, seed=42, source=data/vedastro-15000-famous-births.csv
+
+## Engine settings
+
+| Setting | Value |
+|---|---|
+| ayanamsha | IndianOfficial |
+| karaka_scheme | 7 |
+
+## Oracle settings
+
+| Setting | Value |
+|---|---|
+| kernel | vendor/kernels/inpop21a.bsp |
+| kernel_coverage | JD 2414105.0-2488985.0 (1897-06-30 to 2102-07-05) |
+| frame | apparent geocentric ecliptic OF DATE (epoch='date') |
+| time_scale | case jd_ut treated as UT1 via ts.ut1_jd(jd_ut) |
+| planet_targets | all seven bodies answered from their SYSTEM BARYCENTER — this kernel carries no body-center segment for any of them |
+| citation | A. Fienga et al., inpop21a planetary ephemerides, 2021 |
+| position | unsupported — INPOP has no ayanamsha to derive a sidereal value from. Answers tropical_position instead. |
+| ayanamsha | unsupported — a Jyotish construct, not an astronomical one |
+
+## Results
+
+200 cases
+
+| Disposition | Count | % |
+|---|---|---|
+| pass | 0 | 0.0% |
+| review | 0 | 0.0% |
+| fail | 0 | 0.0% |
+| comparison_invalid | 0 | 0.0% |
+| oracle_unsupported | 200 | 100.0% |
+| oracle_error | 0 | 0.0% |
+| engine_error | 0 | 0.0% |
+
+### Oracle-unsupported reasons (200)
+
+| Reason | Count |
+|---|---|
+| IMCCE INPOP21a adapter does not answer kind='drishti' | 200 |
+

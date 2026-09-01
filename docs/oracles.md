@@ -31,6 +31,42 @@ All six adapters are implemented; the last column above is each one's real,
 current answering scope — several deliberately answer nothing yet, for
 reasons documented in their own adapter docstrings, never silently.
 
+### Independence is a graph, not a headcount
+
+Six oracle *names* is not six independent statistical observations —
+several trace to the same underlying astronomical data, and agreement
+between two members of the same family is expected, not a separate
+confirmation:
+
+- **JPL family** — Skyfield+DE440 (the DE440 kernel directly), Vedaksha's
+  own SPK path (also DE440-derived, per Vedaksha's own published README),
+  and jyotishganit (its own docs cite a JPL-lineage ephemeris underneath —
+  DE421 specifically, per its adapter's docstring). Agreement among these
+  three says "this JPL-derived data is read the same way three times,"
+  not three separate astronomical solutions agreeing.
+- **IMCCE family** — INPOP21a alone. A separate institution, a separate
+  numerical integration, a separate data reduction from JPL's DE series
+  entirely — this is the one member of the roster that tests whether
+  agreement with a JPL-lineage source means anything beyond "two things
+  built from the same data agree."
+- **Structurally independent, not necessarily astronomically independent**
+  — Astronomy Engine (VSOP87A + ELP/MPP02 analytic theory, no swisseph or
+  JPL kernel files at runtime). VSOP87 itself was historically fit against
+  JPL ephemeris data during its own construction, so this is independent
+  *software* (no shared code, no shared kernel file, no live dependency),
+  not a guarantee of an independent underlying astronomical solution.
+- **Own family** — Swiss Ephemeris (its own long-term numerical
+  integration plus analytic extensions, not a direct JPL kernel read) and
+  PyJHora (a from-a-book reimplementation of Jagannatha Hora's own
+  methodology; independence from Swiss specifically is measured, not
+  confirmed — see "PyJHora's independence from Swiss Ephemeris" in
+  `docs/tiers.md`).
+
+Reading a result: agreement across the JPL family alone is weak evidence.
+Agreement that also includes IMCCE, or Astronomy Engine, or Swiss/PyJHora,
+is the stronger signal — because at that point the sources genuinely stop
+sharing a common origin.
+
 ## Case kinds
 
 - **`position`** — sidereal (nirayana) longitude/latitude/distance/speed.
@@ -131,8 +167,19 @@ requests `FLG_SWIEPH` and falls back to the bundled Moshier analytical
 ephemeris (`FLG_MOSEPH`) when no `.se1` data files are installed — lower
 precision, but it means the harness runs with nothing beyond `pip install
 pyswisseph`. Installing the full Swiss Ephemeris data files (`ephe/`,
-gitignored, never committed) tightens the comparison; the adapter records
-which mode actually answered each case.
+gitignored, never committed) tightens the comparison.
+
+**The actual backend is checked per call, not assumed from the request.**
+swisseph's own returned flags — not the requested ones — determine
+whether SWIEPH or MOSEPH really answered; `NAME` reflects this
+("Swiss Ephemeris" only if every case in a run used true SWIEPH data,
+otherwise labeled with the exact backend tally) and `settings()` reports
+`backends_used` directly. `SwissephOracle(require_swieph=True)` fails a
+run immediately, case by case, the moment a call doesn't use true SWIEPH
+— the strict mode for a run whose figures will be published or cited.
+The canonical artifacts under `results/canonical/` were generated in an
+environment with no `.se1` files at all, and say so honestly in their own
+oracle name.
 
 ⚠️ **Licensing.** Swiss Ephemeris is AGPL-3.0-only or commercial. This repo
 depends on it as an optional extra (`pip install vedaksha-parity[swisseph]`),
