@@ -1,0 +1,61 @@
+[project]
+name = "vedaksha-parity"
+version = "0.1.0"
+description = "Independent oracle-parity harness for the Vedaksha ephemeris and Vedic-astrology engine"
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+requires-python = ">=3.11"
+authors = [{ name = "ArthIQ Labs LLC", email = "info@arthiq.net" }]
+dependencies = [
+    "vedaksha==9.1.0",
+    "pyyaml>=6.0",
+]
+
+# Oracle backends are optional extras — one `pip install
+# vedaksha-parity[<extra>]` per engine. Exact pins throughout: an oracle
+# version bump is a reviewed, deliberate regeneration, never a side effect
+# of a fresh install. See docs/oracles.md.
+[project.optional-dependencies]
+swisseph = [
+    "pyswisseph==2.10.3.2",
+]
+skyfield = [
+    "skyfield==1.55",
+]
+jyotishganit = [
+    "jyotishganit==0.1.3",
+]
+astronomy-engine = [
+    "astronomy-engine==2.1.19",
+]
+# INPOP is reached through Skyfield's generic kernel loader, not calcephpy —
+# same dependency as `skyfield`, kept as a separate extra name for clarity.
+inpop = [
+    "skyfield==1.55",
+]
+pyjhora = [
+    "PyJHora==4.8.7",
+    # PyJHora imports these at module load time but does not declare them itself.
+    "geocoder==1.38.1",
+    "pytz==2026.3.post1",
+    "timezonefinder==8.3.0",
+    "geopy==2.5.0",
+]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+vedaksha-parity = "vedaksha_parity.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

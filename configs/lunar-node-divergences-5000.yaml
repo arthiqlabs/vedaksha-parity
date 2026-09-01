@@ -1,0 +1,9 @@
+oracles:
+  - name: swisseph
+  - name: skyfield
+  - name: inpop
+  - name: astronomy-engine
+  - name: pyjhora
+tiers: [t1, t1-tropical, t2]
+birth_bank:
+  count: 5000

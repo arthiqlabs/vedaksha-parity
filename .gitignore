@@ -1,0 +1,25 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Run artifacts. Reproducible from a run's own recorded provenance; stays
+# out of git until promoted to a written finding.
+results/*
+!results/.gitkeep
+
+# Laundered handoff reports exchanged with Vedaksha's own team — working
+# correspondence, not repo content. Substance that matters long-term goes
+# into docs/tiers.md instead.
+docs/findings/*
+!docs/findings/.gitkeep
+
+# Reference-engine kernels, exports and installations — software/data
+# files, never committed.
+vendor/
+*.bsp
+*.se1
+hip_main.dat

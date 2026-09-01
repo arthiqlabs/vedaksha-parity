@@ -1,0 +1,8 @@
+oracles:
+  - name: jyotishganit
+    ayanamsha: TrueChitra
+    max_charts: 100
+tiers: [dasha, drishti]
+birth_bank:
+  count: 100
+  seed: 20260829

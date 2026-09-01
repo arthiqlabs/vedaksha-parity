@@ -1,0 +1,6 @@
+oracles:
+  - name: pyjhora
+tiers: [combustion]
+birth_bank:
+  count: 200
+  seed: 20260829

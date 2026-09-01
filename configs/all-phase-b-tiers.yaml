@@ -1,0 +1,10 @@
+oracles:
+  - name: swisseph
+  - name: jyotishganit
+    ayanamsha: TrueChitra
+  - name: pyjhora
+tiers: [houses, vargas, bhavas, ashtakavarga, panchanga, chara-dasha]
+sweep:
+  from: 2451545.0
+  to: 2453365.0
+  step: 60.0

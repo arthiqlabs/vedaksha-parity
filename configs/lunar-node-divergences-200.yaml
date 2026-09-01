@@ -1,0 +1,14 @@
+oracles:
+  - name: swisseph
+  - name: skyfield
+  - name: inpop
+  - name: astronomy-engine
+  - name: jyotishganit
+    ayanamsha: TrueChitra
+    max_charts: 200   # measured ~142ms/call (see its adapter's docstring) —
+                       # fails loudly rather than silently grinding through more
+  - name: pyjhora
+tiers: [t1, t1-tropical, t2]
+birth_bank:
+  count: 200
+  seed: 20260829

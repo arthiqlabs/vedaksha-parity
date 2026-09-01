@@ -1,0 +1,13 @@
+oracles:
+  - name: swisseph
+  - name: skyfield
+  - name: inpop
+  - name: astronomy-engine
+  - name: jyotishganit
+    ayanamsha: TrueChitra
+  - name: pyjhora
+    karaka_scheme: "8"
+tiers: [t1, t1-tropical, t2, karakas, combustion, drishti, dasha]
+birth_bank:
+  count: 200
+  seed: 42

@@ -1,0 +1,7 @@
+oracles:
+  - name: pyjhora
+    karaka_scheme: "8"
+tiers: [karakas]
+birth_bank:
+  count: 200
+  seed: 20260829
