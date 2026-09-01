@@ -5,6 +5,7 @@ case-generation parameters, and disposition counts. Nothing is hand-typed."""
 from __future__ import annotations
 
 import json
+import math
 import platform
 from datetime import UTC, datetime
 from pathlib import Path
@@ -101,6 +102,22 @@ def _render_markdown(run_record: dict[str, Any], result: dict[str, Any]) -> str:
     lines.append("")
 
     rows = result["rows"]
+
+    stats_block = _render_delta_stats(rows)
+    if stats_block:
+        lines.append("### Raw delta statistics")
+        lines.append("")
+        lines.append(
+            "Disposition counts depend on this project's own provisional "
+            "tolerance bands. These distributions do not -- they are "
+            "computed directly from every row's raw delta, independent of "
+            "any pass/review/fail threshold, and are the primary evidence "
+            "a disposition count only summarizes."
+        )
+        lines.append("")
+        lines.append(stats_block)
+        lines.append("")
+
     fails = [r for r in rows if r["disposition"] == "fail"]
     if fails:
         lines.append(f"### Failures ({len(fails)})")
@@ -149,6 +166,61 @@ def _render_markdown(run_record: dict[str, Any], result: dict[str, Any]) -> str:
             lines.append("")
 
     return "\n".join(lines) + "\n"
+
+
+def _percentile(sorted_values: list[float], p: float) -> float:
+    if not sorted_values:
+        return 0.0
+    if len(sorted_values) == 1:
+        return sorted_values[0]
+    rank = p / 100.0 * (len(sorted_values) - 1)
+    lo, hi = math.floor(rank), math.ceil(rank)
+    if lo == hi:
+        return sorted_values[lo]
+    frac = rank - lo
+    return sorted_values[lo] + (sorted_values[hi] - sorted_values[lo]) * frac
+
+
+def _numeric_stats(values: list[float]) -> dict[str, float]:
+    n = len(values)
+    ordered = sorted(abs(v) for v in values)
+    mean = sum(ordered) / n
+    rms = math.sqrt(sum(v * v for v in ordered) / n)
+    return {
+        "n": n,
+        "mean": mean,
+        "median": _percentile(ordered, 50),
+        "rms": rms,
+        "p90": _percentile(ordered, 90),
+        "p95": _percentile(ordered, 95),
+        "p99": _percentile(ordered, 99),
+        "max": ordered[-1],
+    }
+
+
+def _render_delta_stats(rows: list[dict[str, Any]]) -> str:
+    # Any comparison-dict field whose name contains "delta" and whose
+    # value is numeric (never a bool -- Python's bool is an int subclass)
+    # is treated as a raw magnitude series, gathered across every row
+    # that has one — independent of tier, independent of disposition, and
+    # independent of whatever tolerance band that field is also classified
+    # against.
+    series: dict[str, list[float]] = {}
+    for row in rows:
+        comparison = row.get("comparison") or {}
+        for key, value in comparison.items():
+            if "delta" in key and isinstance(value, (int, float)) and not isinstance(value, bool):
+                series.setdefault(key, []).append(float(value))
+    if not series:
+        return ""
+    lines = ["| Field | n | mean | median | RMS | P90 | P95 | P99 | max |", "|---|---|---|---|---|---|---|---|---|"]
+    for field in sorted(series):
+        s = _numeric_stats(series[field])
+        lines.append(
+            f"| {field} | {s['n']} | {s['mean']:.4f} | {s['median']:.4f} | {s['rms']:.4f} | "
+            f"{s['p90']:.4f} | {s['p95']:.4f} | {s['p99']:.4f} | {s['max']:.4f} |"
+        )
+    return "\n".join(lines)
 
 
 def _escape_pipes(value: Any) -> str:
