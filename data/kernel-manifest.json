@@ -1,0 +1,17 @@
+{
+  "de440.bsp": {
+    "sha256": "a4ce9bf9b3282becc9f4b2ac3cebe03a2ae7599981aabd7265fd8482fff7c4b5",
+    "byte_length": 119799808,
+    "source": "NASA JPL Solar System Dynamics",
+    "source_url": "https://ssd.jpl.nasa.gov/planets/eph_export.html",
+    "retrieved": "2026-08-28"
+  },
+  "inpop21a.bsp": {
+    "sha256": "b78006be15427f667e30031e142ba7ec22945e38334c96f0d6d7a30478f975a9",
+    "byte_length": 22318080,
+    "source": "IMCCE (Institut de Mecanique Celeste et de Calcul des Ephemerides)",
+    "source_url": "inpop21a_TDB_m100_p100_spice.tar.gz, IMCCE distribution",
+    "citation": "A. Fienga et al., inpop21a planetary ephemerides, 2021",
+    "retrieved": "2026-08-28"
+  }
+}

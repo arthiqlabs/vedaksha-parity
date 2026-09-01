@@ -26,6 +26,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from vedaksha_parity.kernel_manifest import verify_kernel
 from vedaksha_parity.oracles.base import OracleUnsupported
 
 try:
@@ -81,6 +82,7 @@ class InpopOracle:
                 f"INPOP21a kernel not found at {self._kernel_path} — see "
                 f"docs/oracles.md for where to fetch it"
             )
+        verify_kernel(self._kernel_path)
         self._ts = load.timescale()
         # `load_file`, never `load`: the latter can silently download a
         # different kernel from a JPL mirror if not found locally.

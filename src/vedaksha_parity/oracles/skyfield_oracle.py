@@ -45,21 +45,23 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from vedaksha_parity.kernel_manifest import verify_kernel
 from vedaksha_parity.oracles.base import OracleUnsupported
 
 try:
     import skyfield
-    from skyfield.api import load
+    from skyfield.api import load, load_file
     from skyfield.errors import EphemerisRangeError
 except ImportError as exc:  # pragma: no cover - exercised via the raising path
     skyfield = None
     load = None
+    load_file = None
     EphemerisRangeError = Exception
     _IMPORT_ERROR = exc
 else:
     _IMPORT_ERROR = None
 
-_DEFAULT_KERNEL = "vendor/kernels/de440.bsp"
+_DEFAULT_KERNEL = Path("vendor/kernels/de440.bsp")
 
 _TARGETS = {
     "Sun": "sun",
@@ -87,9 +89,20 @@ class SkyfieldOracle:
             raise OracleUnsupported(
                 "skyfield is not installed — pip install vedaksha-parity[skyfield]"
             ) from _IMPORT_ERROR
-        self._kernel_name = str(kernel)
+        kernel_path = Path(kernel)
+        if not kernel_path.exists():
+            raise OracleUnsupported(
+                f"DE440 kernel not found at {kernel_path} — see docs/oracles.md "
+                "for where to fetch it"
+            )
+        verify_kernel(kernel_path)
+        self._kernel_name = str(kernel_path)
         self._ts = load.timescale()
-        self._eph = load(self._kernel_name)
+        # `load_file`, never `load`: the latter can silently download a
+        # different kernel from a JPL mirror if not found locally, which
+        # would make this adapter answer from live-fetched data while
+        # claiming to be the pinned, hash-verified local file.
+        self._eph = load_file(self._kernel_name)
         self._earth = self._eph["earth"]
         self.VERSION = f"skyfield {skyfield.__version__} + {Path(self._kernel_name).name}"
 
