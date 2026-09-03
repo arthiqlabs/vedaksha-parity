@@ -91,3 +91,30 @@ terms. Copyleft binds this program's own distribution, not a separately-
 licensed dependency reached via its published package-manager interface
 — the same relationship as any AGPL project depending on a proprietary
 database driver or SDK.
+
+## Cleanroom approvals
+
+```yaml
+- kind: license
+  spdx: AGPL-3.0-only
+  reason: >
+    `pyswisseph` (AGPL-3.0-only) and `PyJHora` (AGPL-3.0; PyPI's classifier
+    metadata mislabels it MIT — the GitHub licence badge is what this repo
+    relies on) are optional oracle adapters imported in-process. This repo is
+    itself AGPL-3.0-or-later, so AGPL-on-AGPL is natively compatible with no
+    subprocess isolation needed — that compatibility is precisely why the repo
+    is AGPL rather than the MIT originally asked for.
+    It does NOT touch Vedaksha's BUSL-1.1 posture: this repo never vendors or
+    redistributes Vedaksha's source, only depends on the published PyPI package
+    like any other consumer, under Vedaksha's own terms. Copyleft binds this
+    program's own distribution, not a separately-licensed dependency reached
+    through its package-manager interface.
+    The workspace-wide `forbidden_licenses` gate blocks AGPL to protect that
+    BUSL position, which is correct as a default and wrong for this one repo —
+    hence a per-repo approval here rather than any change to the global policy.
+  approved_by: Amit (originally ratified 2026-08-28 when the AGPL direction was
+    chosen; re-ratified 2026-09-03 after this block was found missing from the
+    tracked tree — it was recorded in local memory as added-and-verified but
+    was lost in one of the three history rewrites this repo went through)
+  approved_at: 2026-09-03
+```
