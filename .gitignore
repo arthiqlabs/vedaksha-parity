@@ -26,3 +26,9 @@ vendor/
 *.bsp
 *.se1
 hip_main.dat
+
+# Session-bridge memory: internal working notes (names, governance/process
+# detail, cross-repo mentions) — the same content class docs/findings/ and
+# AGENTS.md's own "public-doc-style" rule keep out of tracked repo content.
+# Local-only, same treatment as vedaksha's zero-footprint posture.
+docs/memory/
