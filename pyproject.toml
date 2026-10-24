@@ -7,7 +7,7 @@ license = "AGPL-3.0-or-later"
 requires-python = ">=3.11"
 authors = [{ name = "ArthIQ Labs LLC", email = "info@arthiq.net" }]
 dependencies = [
-    "vedaksha==9.1.0",
+    "vedaksha==10.0.0",
     "pyyaml>=6.0",
 ]
 
