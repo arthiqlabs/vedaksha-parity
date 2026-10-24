@@ -6,7 +6,7 @@ This file inventories all 17, classifies each in or out of scope per
 out of scope"), and states current, reproducible results for every tier
 that is built.
 
-**Vedaksha version tested: `vedaksha==9.1.0`**, unless a result below
+**Vedaksha version tested: `vedaksha==10.0.0`**, unless a result below
 states a different version explicitly. Re-run any `vedaksha-parity
 run-config` command in this file to reproduce the same figures against
 that pin, or a newer one to see whether they still hold.
@@ -46,26 +46,32 @@ case-generation parameters) is always recorded with the result.
 
 ### PyJHora's independence from Swiss Ephemeris
 
-PyJHora's sidereal longitude differs from Swiss Ephemeris's by a small,
-stable, body-specific offset (Sun ~20.84″, Saturn ~26.2–26.7″), constant
-across three epochs spanning B1900 to 2035, with both pinned to the same
-Lahiri ayanamsha. That rules out a directly relabeled value, but a
-constant offset is equally consistent with the same underlying engine run
-with a different flag (aberration, light-time correction) — independence
-from Swiss Ephemeris is not confirmed. Comparisons against PyJHora should
-be read with that caveat; it's documented in the adapter itself
-(`pyjhora_oracle.py`'s module docstring and `settings()`).
+PyJHora's sidereal longitude has been observed to differ from Swiss
+Ephemeris's by a small, stable, body-specific offset with both pinned to
+the same Lahiri ayanamsha. That measurement is recorded in the adapter
+(`pyjhora_oracle.py`'s module docstring) and is not part of the canonical
+artifacts under `results/canonical/`, so no figure from it is quoted here.
+A stable offset rules out a directly relabeled value, but is equally
+consistent with the same underlying engine run with a different flag
+(aberration, light-time correction): independence from Swiss Ephemeris
+is not confirmed. Comparisons against PyJHora should be read with that
+caveat; `settings()` in every PyJHora artifact records it.
 
 ### T1 / T1-tropical / T2 — sidereal and tropical position, ayanamsha
 
 Against Swiss Ephemeris (`SwissephOracle(ayanamsha_mode="true")`, matching
 Vedaksha's own true — mean plus nutation — ayanamsha convention), 200 real
-birth records, 9 bodies each: **T1 sidereal position 1653 pass / 129
-review / 18 engine_error; T1-tropical the same split; T2 ayanamsha 198
-pass / 0 review / 0 fail / 2 engine_error.** The only body carrying any
-review-band spread is TrueNode (mean −2.5″, range roughly ±30″) — an
-inherently higher-variance, perturbation-including quantity, not a
-distinct issue. `ayanamsha_mode` is `"mean"`-selectable too, for
+birth records, 9 bodies each: **T1 sidereal position 1624 pass / 131
+review / 0 fail / 45 engine_error; T1-tropical the same split; T2
+ayanamsha 195 pass / 0 review / 0 fail / 5 engine_error.** Every
+engine_error is one of the same 5 birth records, each outside Vedaksha's
+supported date range (5 records × 9 bodies = 45). All 131 review cases
+are TrueNode (TrueNode: 64 pass / 131 review; longitude delta mean
++0.07″, range −37.8″ to +32.2″), an inherently higher-variance,
+perturbation-including quantity, not a distinct issue; every other body
+passes on all 195 evaluable records. The Swiss Ephemeris backend tally
+behind these runs is recorded in each artifact's oracle name (see
+`results/canonical/README.md`). `ayanamsha_mode` is `"mean"`-selectable too, for
 comparing against a mean-only ayanamsha convention if that's ever needed;
 `"true"` is the default and what the figures above use.
 
@@ -94,67 +100,86 @@ scale. Reproduce (once run): `vedaksha-parity run --tier t1-adversarial
 ### Karakas
 
 PyJHora's `get_chara_karakas` against Vedaksha's `compute_karakas(scheme="8")`
-(`Engine(karaka_scheme="8")`), 200 real birth records: **156 pass / 33
-review / 9 fail / 2 engine_error.** A single adjacent-rank swap changes
+(`Engine(karaka_scheme="8")`), 200 real birth records: **152 pass / 34
+review / 9 fail / 5 engine_error.** A single adjacent-rank swap changes
 two karaka titles at once, so this comparator's review threshold is 2
 mismatches (`KARAKA_REVIEW_MISMATCH_MAX` in `config.py`), not the 1 used
-elsewhere. 33 of the 42 non-passing cases are a single adjacent-rank swap
-(now correctly "review"); the rest are larger reorderings. Most
-reordering cases correlate with Vedaksha's own computed Rahu
-degree-in-sign sitting within about a degree of a sign boundary — a
-boundary-sensitivity pattern, not a scattered disagreement — though the
-exact mechanism for the small remaining set of near-total reorders isn't
-fully resolved.
+elsewhere. All 34 review cases are a single adjacent-rank swap. The 9
+fails are larger reorderings: 5 mismatch all eight titles, 1 mismatches
+seven, and 3 mismatch three. In the six cases with seven or eight
+mismatched titles, Vedaksha's own computed Rahu degree-in-sign sits
+within 1.1° of a sign boundary, a boundary-sensitivity pattern; in the
+three three-title cases it does not (it sits 1.4° to 14.5° from the
+nearest boundary). The mechanism for either group is not established.
 
-Reproduce: `vedaksha-parity run-config configs/pyjhora-karakas-200.yaml`
+Reproduce: `vedaksha-parity run-config configs/all-tiers-200-birthbank-v2.yaml`
 
 ### Combustion
 
 Against PyJHora, 200 real birth records (6 bodies: Moon, Mars, Mercury,
-Jupiter, Venus, Saturn): **1,089 pass / 99 fail / 12 engine_error** out of
-1,200 cases. The 99 fails split into two categories: 57 are a documented
-granularity gap (Vedaksha reports `DeeplyCombust` as a distinct state;
-PyJHora's states are binary `Combust`/`None`, concentrated in Mercury,
-which sits closest to the Sun); 42 are genuine boundary-crossing
-disagreements, consistent with PyJHora's own small stable longitude
-offset (above) occasionally placing a planet on the opposite side of the
-combustion threshold from Vedaksha.
+Jupiter, Venus, Saturn): **1,053 pass / 0 review / 117 fail / 30
+engine_error** out of 1,200 cases (the 30 engine_errors are the same 5
+out-of-range birth records as T1, × 6 bodies). The 117 fails split into
+two categories. 69 are a documented granularity gap: Vedaksha reports
+`DeeplyCombust` as a distinct state, PyJHora's states are binary
+`Combust`/`None`; Mercury carries 30 of the 69. The other 48 are genuine
+`Combust`/`None` disagreements. These sit in bands several degrees wide
+next to Vedaksha's own stated orb for each body (its tool description
+lists the orbs): Vedaksha `None`, PyJHora `Combust` for Mercury at 14.0°
+to 16.8° from the Sun (29 cases), the Moon at 12.2° to 14.8° (6) and
+Jupiter at 11.5° to 13.8° (3); Vedaksha `Combust`, PyJHora `None` for
+Mars at 10.9° to 16.1° (6), Saturn at 11.3° to 12.3° (3) and Mercury at
+6.8° (1). Bands degrees wide are far wider than the small longitude
+offset noted above could account for; they are consistent with the two engines applying different
+orbs, which this harness has not measured on the PyJHora side.
 
-Reproduce: `vedaksha-parity run-config configs/pyjhora-combustion-200.yaml`
+Reproduce: `vedaksha-parity run-config configs/all-tiers-200-birthbank-v2.yaml`
 
 ### Drishti
 
-Against jyotishganit (`Engine(ayanamsha="TrueChitra")`), 100 real birth
-records: **0 pass / 83 fail / 17 oracle_unsupported** (jyotishganit's own
-DE421-backed date range, 1899–2053). Every failing case has exactly 6
-mismatches, always confined to Rahu/Ketu — the seven classical grahas
-agree perfectly, every time. This is a documented convention difference,
+Against jyotishganit (`Engine(ayanamsha="TrueChitra")`), 200 real birth
+records: **0 pass / 0 review / 154 fail / 46 oracle_unsupported**
+(outside jyotishganit's own DE421-backed date range, 1899-07-29 to
+2053-10-09). jyotishganit grades no aspect strength, so the comparator
+reduces Vedaksha's aspects to its `Full` ones and compares the sets of
+aspected signs only (`compared_strength: false` on every row). Every
+failing case has exactly 6 mismatches, always confined to Rahu/Ketu: the
+seven classical grahas agree on every evaluable chart. This is a
+documented convention difference,
 not an open question: Vedaksha treats the nodes as ordinary grahas for
 aspect purposes (universal 7th aspect at full strength, graduated partial
 strength at 3rd/4th/5th/8th/9th/10th); jyotishganit gives them
 Jupiter-like special aspects instead (5th and 9th) and no 7th aspect at
 all. Missing 7th × 2 nodes + extra {5th, 9th} × 2 nodes = 6, matching the
-measured count exactly on every chart.
+measured count exactly on every chart. In 152 of the 154 the two extra
+signs are the 5th and 9th from Vedaksha's node sign; in the other 2 they
+are the 4th and 8th, which is what the same rule gives if jyotishganit
+places the nodes one sign earlier than Vedaksha does (inferred from the
+aspect sets; the nodes' own signs were not compared in this run).
 
-Reproduce: `vedaksha-parity run-config configs/jyotishganit-dasha-drishti-100.yaml`
+Reproduce: `vedaksha-parity run-config configs/all-tiers-200-birthbank-v2.yaml`
 
 ### Dasha (Vimshottari)
 
-Against jyotishganit, 100 real birth records: lord sequence matches on
-every evaluable case, with a boundary-date drift of 1.0–6.05 days
-(median ~2.1 days) under the current provisional 1-day tolerance band.
-The drift is a documented convention difference, not an accuracy problem:
-Vedaksha uses the Julian year (365.250000 days) for dasha-period
-arithmetic; jyotishganit uses the sidereal year (365.256360 days). The
-systematic component of the drift (period boundary delta growing roughly
-linearly with elapsed time) is fully explained by that year-length gap; a
-smaller near-constant residual (~1.5-day stdev) is not further isolated.
-The tolerance band (`dasha_start_delta_days`) is still the provisional
-placeholder and has not been recalibrated against this measured
-distribution — a real limitation of the current disposition counts, not
-of the underlying comparison.
+Against jyotishganit, 200 real birth records: **0 pass / 43 review / 111
+fail / 46 oracle_unsupported** (the same out-of-range records as
+Drishti). The lord sequence matches on all 154 evaluable cases. The
+worst boundary-date delta per case runs from 0.35 to 3.84 days (median
+1.58 days); against the provisional band (`dasha_start_delta_days`: pass
+0.01 day, review 1 day) that puts the 43 cases between 0.35 and 0.98 days
+in review and the 111 above 1 day in fail. The drift is a documented
+convention difference, not an accuracy problem: Vedaksha uses the Julian
+year (365.250000 days) for dasha-period arithmetic; jyotishganit uses the
+sidereal year (365.256360 days). That gap accounts for the drift's
+linear growth with elapsed time: a fit over all 1,386 matched period boundaries gives a
+slope of −0.00645 days per year of elapsed time, against −0.00636 from
+the year-length gap alone. The scatter about that fit (1.54-day standard
+deviation) is not further isolated. The tolerance band is still the
+provisional placeholder and has not been recalibrated against this
+measured distribution, a real limitation of the current disposition
+counts, not of the underlying comparison.
 
-Reproduce: `vedaksha-parity run-config configs/jyotishganit-dasha-drishti-100.yaml`
+Reproduce: `vedaksha-parity run-config configs/all-tiers-200-birthbank-v2.yaml`
 
 ## Full tool inventory and scope classification
 
@@ -231,8 +256,9 @@ entry per aspecting/aspected sign pair:
 ```
 
 Compared with a **set/categorical comparator**: for each planet, does the
-full set of aspected signs (and each one's strength) match between the
-two sides?
+full set of aspected signs match between the two sides, and, when both
+sides grade strength, each one's strength? Against a binary reference,
+only the graded side's `Full` aspects are compared.
 
 ### Dasha — Vimshottari/Ashtottari/Yogini (`compute_dasha`)
 
@@ -299,10 +325,10 @@ Against Swiss Ephemeris (`houses_ex(..., flags=FLG_SIDEREAL)`),
 compared on Asc + MC + 12 cusps as circular longitude deltas, classified
 by the worst of the 14: **883 pass / 47 review / 0 fail** (31-instant
 sweep across the full 30-city grid, 930 cases). The 47 review cases are
-concentrated at higher-latitude/diaspora cities (London, Toronto, New
-York) and mostly on the ascendant specifically — consistent with
-ordinary numerical precision at the most latitude-sensitive point in a
-chart.
+concentrated at higher-latitude/diaspora cities (London 10, Toronto 8,
+New York 6) and mostly on the ascendant specifically (the worst of the 14
+points in 34 of the 47), consistent with ordinary numerical precision at
+the most latitude-sensitive point in a chart.
 
 Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
@@ -331,7 +357,11 @@ kendra (quadrant) and, by count-from-lagna, an upachaya house
 (3rd/6th/10th/11th); whether the two roles are mutually exclusive is a
 question in the tradition itself, not a computation bug. The 3 fail cases
 are a distinct pattern (all 12 bhava signs mismatched at once), consistent
-with the same ascendant-boundary effect documented under house cusps.
+with an ascendant-sign disagreement: at those three instants and places
+(Lucknow, Ahmedabad, Kolkata), the house-cusp run puts Vedaksha's
+ascendant within 0.08° of a sign boundary. That run uses the
+IndianOfficial ayanamsha and this one TrueChitra, so the 0.08° is
+indicative, not this run's own margin.
 
 Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
@@ -339,12 +369,18 @@ Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
 Against jyotishganit's own per-sign bindu counts (Sarvashtakavarga
 totals), same grid and sweep: **0 pass / 0 review / 928 fail / 2
-oracle_error.** Every mismatched sign's delta is exactly ±1 bindu,
-concentrated on a small recurring subset of sign pairs (most often
-10th/11th). Vedaksha's own tool description states `compute_ashtakavarga`
-does not apply Trikona/Ekadhipatya Shodhana or Pinda Sadhana corrections
-— a shodhana step is exactly a ±1-bindu-per-sign adjustment, consistent
-with this pattern.
+oracle_error.** 925 of the 928 fails mismatch exactly two adjacent signs,
+one by +1 bindu and the other by −1, so one bindu sits in a neighbouring
+sign; the most frequent pairs (signs indexed 0 = Aries) are 1/2 (150
+cases) and 10/11 (120 cases). The other 3 fails are the same three
+charts as the Bhavas fails (Lucknow, Ahmedabad, Kolkata), with 10 or 11
+signs mismatched by up to 6 bindus, consistent with the lagna sign
+differing. In all 928 both sides total 337 bindus. Vedaksha's own tool
+description states `compute_ashtakavarga` does not apply
+Trikona/Ekadhipatya Shodhana or Pinda Sadhana corrections; since
+jyotishganit's totals are equal to Vedaksha's, a reduction on its side
+does not explain this pattern either. The cause of the one-bindu shift is
+not established.
 
 Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
@@ -352,12 +388,12 @@ Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
 Against jyotishganit's `tithi`/`nakshatra`/`yoga`/`karana`/`vara`, same
 grid and sweep: **578 pass / 281 review / 69 fail / 2 oracle_error.**
-Every mismatch concentrates in vara, yoga, or karana — never tithi or
-nakshatra. Vara depends on local sunrise (the same location/timing
-sensitivity documented under house cusps); yoga and karana are narrow,
-fast-moving divisions (1/60th and 1/30th of the lunar-solar cycle) where
-a small residual timing difference crosses a boundary far more often
-than in the wider tithi/nakshatra divisions.
+Tithi never mismatches. Across the 350 review and fail cases, vara
+mismatches in 223, yoga in 90, karana in 89 and nakshatra in 30. Vara
+is the largest single source and depends on local sunrise (the same
+location/timing sensitivity documented under house cusps); karana is the
+narrowest limb (half a tithi). Why yoga and nakshatra disagree as often
+as they do is not isolated here.
 
 Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 
@@ -367,60 +403,53 @@ Against PyJHora's `chara.get_dhasa_antardhasa`
 (`compare_sign_dasha` — sign sequence plus boundaries), full 30-city grid
 at 31 instants (930 cases): **sign sequence matches 930/930 (100%)** —
 starting sign and direction both agree at every one of the 12 lagna
-categories. Boundary accuracy: median delta ~730 days (~2 years);
-185/930 cases (19.9%) match to within 1 day; 228/930 (24.5%) are off by
-more than 1,000 days. The remaining spread traces to individual sign-lord
-assignments landing on opposite sides of a sign boundary — consistent
-with PyJHora's own small stable longitude offset from Vedaksha (see
-"PyJHora's independence from Swiss Ephemeris" above) occasionally placing
-a slow-moving ruling planet across a boundary between the two engines,
-each such case shifting every later period's boundary by up to a year.
+categories. Disposition: **0 pass / 187 review / 743 fail.** Boundary
+accuracy: median worst-boundary delta 730 days (~2 years); 187/930 cases
+(20.1%) match to within 1 day; 202/930 (21.7%) are off by more than
+1,000 days. The spread comes from period durations: 728 of the 930 cases
+have at least one period whose length in whole years differs between the
+two engines (1 to 7 such periods per case). Of the 2,033 differing
+periods, 1,831 differ by exactly one year, 163 by two, and 39 by three to
+eight. A difference that common and that large is not explained by a
+small longitude offset; its cause is not established here.
 
 Reproduce: `vedaksha-parity run-config configs/all-phase-b-tiers.yaml`
 (no ayanamsha override needed — PyJHora is pinned to Lahiri, matching
 Vedaksha's default `IndianOfficial`.)
 
-### MeanNode sidereal drift — resolved against a physical arbiter
+### MeanNode sidereal drift against jyotishganit
 
 Vedaksha's `TrueChitra`-sidereal MeanNode, compared against jyotishganit's
-own MeanNode, shows an apparent divergence of −50.35 arcsec/year (linear,
-r=1.00) — close to the standard general-precession figure (~50.29″/yr).
-Resolved by checking both sides against an independent physical
-reference: the Moon's real, instantaneous (osculating) ascending-node
-longitude, computed directly from DE440's own state vectors via standard
-orbital mechanics (not any node theory or implementation), expressed in
-the properly precession-corrected mean ecliptic and equinox of date. A
-control (the same osculating node left in the fixed J2000 frame,
-deliberately not precession-corrected) recovers ~−50.4″/yr against both
-engines, confirming the method detects a precession-frame error of this
-size. Against the corrected physical reference, both engines' tropical
-mean node come back flat: **−0.036 ± 2.11″/yr against Vedaksha's tropical
-mean node, −0.065 ± 2.11″/yr against jyotishganit's** — both within noise
-and over 700× smaller than the control. **Vedaksha's mean node does not
-drift against the physical kernel geometry.**
+own MeanNode in the canonical T1 run (154 evaluable birth records, 153
+fail / 1 pass), shows an apparent divergence of −50.40 arcsec/year
+(linear fit of the longitude delta against time, |r| = 0.9999), close to
+the standard general-precession rate (~50.29″/yr). The seven classical
+grahas in the same run show no such trend (slopes from −0.022 to
+−0.035″/yr), so the divergence is specific to the node.
 
-The apparent divergence traces to jyotishganit's own separately-reported
-ayanamsha value being nearly frozen over time (measured at −0.026″/yr to
-−0.16″/yr across two independent samples spanning 1899–2050, against an
-expected ~1.83° movement for a genuinely precessing ayanamsha over a
-comparable span — documented in `jyotishganit_oracle.py`'s module
-docstring). Since jyotishganit's own tropical mean node tracks the
-physical node correctly, and its reported ayanamsha barely moves, its
-sidereal Rahu output itself moves at very nearly the tropical rate rather
-than a precession-corrected sidereal rate — accounting for very nearly
-the exact −50.35″/yr gap. This is an output-level fact about jyotishganit
-specifically; why its own reported ayanamsha behaves this way is not
-established, and this project does not read its source to find out.
+A check of both engines' tropical mean node against a physical
+reference (the Moon's osculating ascending node computed from DE440
+state vectors, with a deliberately uncorrected J2000-frame control) is
+not part of the canonical artifacts under `results/canonical/`, so no
+figure or conclusion from it is quoted here.
 
-## Known gap in Vedaksha's own tool metadata
+jyotishganit's ayanamsha does not precess: its adapter records it as
+fixed (`settings()` in every jyotishganit artifact, and
+`jyotishganit_oracle.py`'s module docstring). A sidereal node computed
+against a fixed ayanamsha would move at very nearly the tropical rate
+rather than a precession-corrected sidereal rate, which is consistent
+with a gap of about the general-precession rate. This is an output-level
+reading of jyotishganit specifically; why its sidereal node behaves this
+way while its planets do not is not established, and this project does
+not read its source to find out.
 
-`compute_natal_chart`'s own tool description promises output "containing
-planetary positions, house cusps, aspects, nakshatras, and dignities" —
-the actual returned per-planet fields are `dignity, distance, house,
-latitude, longitude, name, retrograde, sign, sign_index, speed`. No
-nakshatra field anywhere, top-level or per-planet, despite the
-description. The real per-planet nakshatra+pada value only appears via
-`compute_panchanga` (Phase B). A nakshatra classification could be
+## Nakshatra is not a natal-chart field
+
+In `vedaksha==10.0.0`, `compute_natal_chart` returns per-planet fields
+`dignity, distance, house, latitude, longitude, name, retrograde, sign,
+sign_index, speed`, and no nakshatra field anywhere, top-level or
+per-planet; its tool description does not list one either. The real
+nakshatra+pada value only appears via `compute_panchanga` (Phase B). A nakshatra classification could be
 computed from Vedaksha's own already-tested sidereal longitude using the
 standard published 27-fold division, but that would mostly restate T1's
 finer-grained longitude test except at classification-boundary cases, so
