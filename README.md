@@ -30,6 +30,21 @@ who wrote the harness — and the repo is designed so anyone can clone it
 and re-run the same comparisons themselves rather than take any of this
 on faith.
 
+## Reproducing the published figures
+
+The cross-validation and the by-distance-from-J2000 table that vedaksha.net/accuracy
+and the engine's `docs/accuracy/<date>-parity-results.json` publish come from two
+commands in this repository, run against the named `vedaksha` release pinned in
+`pyproject.toml`, with the DE440 and INPOP21a kernels in `vendor/kernels/`:
+
+```
+vedaksha-parity run-config configs/crossval-2000.yaml --out <dir>
+python -I scripts/fullrange_tt_sweep.py vendor/kernels/de440.bsp 2292184.5 9131.25 43 <out.json>
+```
+
+The artifacts behind the current publication are committed in `results/canonical/`
+(`t1-tropical-*` for the cross-validation, `fullrange-tt-*` for the table).
+
 ## Why this exists
 
 Vedaksha publishes its own accuracy figures, measured against JPL kernels,

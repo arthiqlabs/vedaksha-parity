@@ -1,0 +1,12 @@
+# Cross-validation published on vedaksha.net/accuracy and in the engine's
+# docs/accuracy/<date>-parity-results.json: analytical-path tropical longitudes
+# at the 2,000 instants of the bundled birth-data sample, against JPL DE440 and
+# IMCCE INPOP21a.
+#   vedaksha-parity run-config configs/crossval-2000.yaml --out <dir>
+oracles:
+  - name: skyfield
+  - name: inpop
+tiers: [t1-tropical]
+birth_bank:
+  count: 2000
+  seed: 42
