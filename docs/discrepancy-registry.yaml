@@ -35,9 +35,11 @@
   primary_source_basis: >
     Both are attested classical positions on how a permanently-retrograde
     node's aspects should be reckoned; the fixed, uniform count (6
-    mismatches, zero variance across 100 real charts, entirely explained
-    by missing-7th + extra-{5th,9th} x 2 nodes) is the structural
-    signature of a real convention split, not noise.
+    mismatches, all on Rahu/Ketu, zero variance across all 154 evaluable
+    charts of the 200-record seed-42 bank, entirely explained by
+    missing-7th + extra-{5th,9th} x 2 nodes; in 2 of the 154 the extra
+    signs are the 4th and 8th instead) is the structural signature of a
+    real convention split, not noise.
   date_classified: "2026-08-29"
   evidence: docs/tiers.md, Drishti section
 
@@ -50,32 +52,45 @@
     Both are legitimate, well-defined, classically-used year lengths for
     dasha calculations. Derived directly from each side's own output
     (full-period end_jd minus start_jd, divided by the lord's own
-    classical duration in years), matching to 6 decimal places across
-    every lord checked on both sides -- not inferred, measured.
+    classical duration in years) over the 1,078 interior maha dashas of
+    the 154 evaluable cases: Vedaksha 365.250000 on every period,
+    jyotishganit 365.256359 to 365.256362 -- not inferred, measured.
   date_classified: "2026-08-31"
-  evidence: docs/tiers.md, Dasha (Vimshottari) section
+  evidence: docs/tiers.md, Dasha (Vimshottari) section; results/canonical/dasha-jyotishganit-*.json maha_dashas
 
+# Reclassified 2026-10-24 from expected_convention. The earlier basis (a
+# shodhana step on one side) does not fit the vedaksha==10.0.0 canonical
+# artifact: both sides total 337 bindus in every failing case, which a
+# reduction on either side would not leave equal. The id is kept so
+# existing references still resolve.
 - id: ASHTAKAVARGA-SHODHANA-001
-  quantity: Sarvashtakavarga bindu counts
+  quantity: Sarvashtakavarga bindu counts per sign
   vedaksha_behavior: >
-    compute_ashtakavarga's own tool description states explicitly that it
-    does not apply Trikona/Ekadhipatya Shodhana or Pinda Sadhana
-    corrections.
-  oracle_behavior: jyotishganit's counts differ from Vedaksha's by exactly +/-1 bindu per sign.
-  classification: expected_convention
-  primary_source_basis: >
-    Vedaksha's own published tool description is the source for the
-    scope choice; a shodhana step is exactly a +/-1-bindu-per-sign
-    adjustment applied on top of the raw count, consistent with the
-    measured pattern. This is Vedaksha's own documented scope, not an
-    inference about jyotishganit's internals.
-  date_classified: "2026-08-29"
-  evidence: docs/tiers.md, Ashtakavarga section
+    Per-sign Sarvashtakavarga counts totalling 337 in every case; its tool
+    description states it applies no Trikona/Ekadhipatya Shodhana or Pinda
+    Sadhana correction.
+  oracle_behavior: >
+    jyotishganit, 30-city grid x 31 instants (930 cases): 928 fail, 2
+    oracle_error. Its counts also total 337 in all 928. 925 fails differ in
+    exactly two adjacent signs, -1 and +1, with jyotishganit's bindu always
+    in the later sign of the pair (Pisces to Aries in the 30 that wrap);
+    most frequent pairs Taurus/Gemini (150) and Capricorn/Aquarius (120).
+    The other 3 (Lucknow, Ahmedabad, Kolkata, the same charts as the bhavas
+    fails) differ in 10 or 11 signs by up to 6 bindus.
+  classification: unresolved
+  primary_source_basis: null
+  date_classified: "2026-10-24"
+  evidence: >
+    results/canonical/ashtakavarga-jyotishganit-2026-10-24T202908.730585+0000.json
+    (engine_answer, oracle_answer); docs/tiers.md, Ashtakavarga section.
+    Cause not established.
 
 - id: BHAVA10-KENDRA-UPACHAYA-001
   quantity: bhava_10.is_upachaya classification
-  vedaksha_behavior: 10th house is not flagged upachaya (only kendra).
-  oracle_behavior: jyotishganit flags the 10th as both kendra and upachaya.
+  vedaksha_behavior: 10th house is flagged both kendra and upachaya.
+  oracle_behavior: >
+    jyotishganit flags the 10th as kendra only, not upachaya (all 925
+    review cases in the canonical bhavas artifact).
   classification: expected_convention
   primary_source_basis: >
     The 10th house is simultaneously a kendra (quadrant) and, by
@@ -88,16 +103,16 @@
 - id: MEANNODE-SIDEREAL-DRIFT-001
   quantity: MeanNode sidereal longitude, TrueChitra ayanamsha
   vedaksha_behavior: >
-    Tropical mean node matches an independently-derived physical
-    reference (the Moon's real osculating node, computed from DE440's
-    own state vectors) to within noise: -0.036 +/- 2.11 arcsec/yr.
+    Against jyotishganit's MeanNode in the canonical T1 run (154 evaluable
+    birth records, 153 fail / 1 pass), the longitude delta drifts at
+    -50.40 arcsec/yr (linear fit, |r| = 0.9999); the seven classical
+    grahas show no such trend (-0.022 to -0.035 arcsec/yr).
   oracle_behavior: >
-    jyotishganit's own reported ayanamsha value is nearly frozen over
-    time (-0.026 to -0.16 arcsec/yr measured, against an expected ~1.83
-    deg over a comparable span for a genuinely precessing ayanamsha) --
-    algebraically, this makes its sidereal Rahu output move at very
-    nearly the tropical rate, accounting for very nearly the exact
-    -50.35 arcsec/yr gap originally measured.
+    jyotishganit's ayanamsha does not precess (23.8376 deg at 1903,
+    23.8433 deg at 2035, where a precessing one moves ~1.83 deg over that
+    span; jyotishganit_oracle.py module docstring). A sidereal node taken
+    against a fixed ayanamsha moves at nearly the tropical rate, which is
+    consistent with a gap of about the general-precession rate.
   classification: reference_limitation
   primary_source_basis: >
     A physical arbiter neither implementation alone could provide: DE440
@@ -106,7 +121,12 @@
     a claim about why jyotishganit's ayanamsha behaves this way -- an
     output-level fact only, per FIREWALL rule 1.
   date_classified: "2026-09-01"
-  evidence: docs/tiers.md, MeanNode sidereal drift section
+  evidence: >
+    docs/tiers.md, MeanNode sidereal drift section, for the -50.40
+    arcsec/yr drift (results/canonical/t1-jyotishganit-*.json). The DE440
+    arbiter check this classification rests on is not part of the
+    committed canonical artifacts, and docs/tiers.md quotes no figure
+    from it.
 
 - id: PYJHORA-SWISSEPH-INDEPENDENCE-001
   quantity: whether PyJHora's sidereal longitude is astronomically independent of Swiss Ephemeris
@@ -126,14 +146,18 @@
   quantity: Chara dasha period duration for dual-lord signs (Scorpio, Aquarius)
   vedaksha_behavior: >
     Chart-dependent duration per sign (fixed at vedaksha==9.0.0 via the
-    graha_signs input); residual mismatch after the fix isolates almost
-    entirely to Scorpio (Mars+Ketu) and Aquarius (Saturn+Rahu) -- the two
-    dual-lord signs. Gemini/Virgo (sole Mercury rulership) show 0% mismatch.
+    graha_signs input). In the vedaksha==10.0.0 canonical run (930 cases,
+    2,033 periods whose whole-year length differs) the mismatch is highest
+    in Aquarius (432 of 930 periods) and Scorpio (341), the two dual-lord
+    signs, but is not confined to them: every sign except Gemini and Virgo
+    (0 each) differs in 90 to 210 periods.
   oracle_behavior: PyJHora's own duration for the same dual-lord signs.
   classification: unresolved
   primary_source_basis: null
   date_classified: "2026-08-31"
-  evidence: docs/tiers.md, Chara dasha section
+  evidence: >
+    docs/tiers.md, Chara dasha section; per-sign counts from
+    results/canonical/chara-dasha-pyjhora-*.json (duration_years per period)
 
 - id: MARS-SYNODIC-OSCILLATION-001
   quantity: analytical_position longitude residual vs DE440, Mars, 400-600 years from J2000
@@ -151,4 +175,8 @@
     original 25-year and 5-year sweeps were aliasing this real signal,
     not observing noise.
   date_classified: "2026-09-01"
-  evidence: docs/tiers.md, MeanNode section context; full-range TT sweep work
+  evidence: >
+    Not in docs/tiers.md or any committed canonical artifact. The
+    full-range TT artifact (results/canonical/fullrange-tt-10.0.0-2026-10-24.json)
+    samples every 9131.25 days, far too coarse to show a ~2.15-year
+    period; the dense 0.25-year scan this entry rests on is not committed.

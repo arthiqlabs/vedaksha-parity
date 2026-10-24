@@ -34,6 +34,30 @@ def test_backend_is_recorded_after_a_real_call(oracle):
     assert set(backends) <= {"SWIEPH", "MOSEPH", "JPLEPH", "UNKNOWN"}
 
 
+def test_houses_call_is_counted_without_claiming_a_backend():
+    # houses_ex returns no ret_flags, so no backend can be read off it; the
+    # call must still be counted, or NAME claims no cases ran.
+    fresh = SwissephOracle()
+    fresh.answer({"kind": "houses", "jd_ut": J2000, "latitude": 28.6139, "longitude": 77.2090})
+    assert fresh.settings()["backends_used"] == {"NOT_REPORTED": 1}
+    assert "no cases run" not in fresh.NAME
+    assert "not reported" in fresh.NAME
+
+
+def test_ayanamsha_call_is_counted_without_claiming_a_backend():
+    fresh = SwissephOracle()
+    fresh.answer({"kind": "ayanamsha", "jd_ut": J2000})
+    assert fresh.settings()["backends_used"] == {"NOT_REPORTED": 1}
+
+
+def test_begin_run_resets_the_backend_tally():
+    fresh = SwissephOracle()
+    fresh.answer({"kind": "position", "jd_ut": J2000, "body": "Sun"})
+    fresh.begin_run()
+    assert fresh.settings()["backends_used"] == "no cases run yet"
+    assert "no cases run" in fresh.NAME
+
+
 def test_require_swieph_raises_when_the_true_backend_is_unavailable():
     # This environment has no .se1 data files installed (confirmed
     # directly), so swisseph silently falls back to Moshier — exactly the

@@ -46,7 +46,17 @@ _AYANAMSHA_MODES = ("mean", "true")
 # REQUEST does not guarantee FLG_SWIEPH in the RESPONSE: without .se1
 # data files installed, swisseph silently substitutes the bundled
 # Moshier analytical ephemeris and still returns a number.
+#
+# Measured, output level only: with no .se1 files on the ephemeris path,
+# calc_ut for MEAN_NODE still returns FLG_SWIEPH while every other mapped
+# body returns FLG_MOSEPH. A SWIEPH count therefore does not by itself show
+# that a .se1 file was read.
 _BACKEND_BITS = ("SWIEPH", "MOSEPH", "JPLEPH")
+
+# Recorded for a call whose swisseph function returns no ret_flags at all
+# (houses_ex, get_ayanamsa_ut), so the call is counted without a backend
+# being claimed for it.
+_NOT_REPORTED = "NOT_REPORTED"
 
 
 class SwissephOracle:
@@ -73,6 +83,15 @@ class SwissephOracle:
         self._body_ids = {name: getattr(swe, const) for name, const in _BODY_IDS.items()}
         self._backends_used: dict[str, int] = {}
 
+    def begin_run(self) -> None:
+        """Reset the backend tally. The runner calls this at the start of
+        every run, so NAME and settings() describe that run's own calls,
+        not every call this instance has answered across earlier tiers."""
+        self._backends_used = {}
+
+    def _record_unreported(self) -> None:
+        self._backends_used[_NOT_REPORTED] = self._backends_used.get(_NOT_REPORTED, 0) + 1
+
     def _record_backend(self, ret_flags: int) -> None:
         backend = next((b for b in _BACKEND_BITS if ret_flags & getattr(swe, f"FLG_{b}")), "UNKNOWN")
         self._backends_used[backend] = self._backends_used.get(backend, 0) + 1
@@ -94,6 +113,8 @@ class SwissephOracle:
             return "Swiss Ephemeris (backend not yet determined — no cases run)"
         if set(self._backends_used) == {"SWIEPH"}:
             return "Swiss Ephemeris"
+        if set(self._backends_used) == {_NOT_REPORTED}:
+            return "Swiss Ephemeris (backend not reported by these calls)"
         return f"Swiss Ephemeris (mixed backends: {self._backends_used})"
 
     def settings(self) -> dict[str, Any]:
@@ -146,6 +167,7 @@ class SwissephOracle:
     def _ayanamsha(self, case: dict[str, Any]) -> dict[str, Any]:
         jd_ut = case["jd_ut"]
         mean_value = swe.get_ayanamsa_ut(jd_ut)
+        self._record_unreported()
         if self._ayanamsha_mode == "mean":
             return {"value": mean_value}
         # "true" — mean ayanamsha plus nutation-in-longitude, matching
@@ -169,4 +191,5 @@ class SwissephOracle:
             )
         except swe.Error as exc:
             raise OracleUnsupported(f"swisseph houses_ex raised: {exc}") from exc
+        self._record_unreported()
         return {"asc": ascmc[0], "mc": ascmc[1], "cusps": list(cusps)}

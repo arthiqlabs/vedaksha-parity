@@ -35,12 +35,41 @@ it becomes one of the two canonical configs above.
 ## Environment this run actually used, stated plainly
 
 This particular commit's artifacts were generated in an environment with
-**no Swiss Ephemeris `.se1` data files installed** — every Swiss
-Ephemeris comparison here answered via the Moshier analytical fallback,
-not true Swiss Ephemeris numerical integration. This is not hidden: the
-oracle's own `NAME` field in every affected file states the exact
-backend tally (e.g. `Swiss Ephemeris (mixed backends: {'MOSEPH': 3200,
-'SWIEPH': 400})`), and `settings()` records it per run. A run with `.se1`
-files installed, or with `SwissephOracle(require_swieph=True)`, would
-answer differently and more precisely for the Swiss comparisons
-specifically — every other oracle here is unaffected by this.
+**no Swiss Ephemeris `.se1` data files installed**, so every Swiss
+Ephemeris position here answered via the Moshier analytical fallback, not
+true Swiss Ephemeris numerical integration. Every other oracle here is
+unaffected by this. A run with `.se1` files installed, or with
+`SwissephOracle(require_swieph=True)`, would answer differently for the
+Swiss position comparisons specifically.
+
+The backend tally in a Swiss Ephemeris artifact's oracle `name` (and in
+`settings().backends_used`) needs three corrections to be read correctly,
+all from how the adapter (`src/vedaksha_parity/oracles/swisseph_oracle.py`)
+counted when these artifacts were produced:
+
+1. **The tally was cumulative across tiers.** `run-config` builds one
+   adapter instance per oracle and reuses it for every tier in the config,
+   and the tally was never reset between tiers. So `t1` records its own
+   1,800 position calls (`{'MOSEPH': 1600, 'SWIEPH': 200}`), `t1-tropical`
+   records `t1`'s plus its own (`3200`/`400`), and every later tier in
+   `configs/all-tiers-200-birthbank-v2.yaml` repeats that figure because it
+   made no further position calls. `t1-tropical`'s own share is the same
+   1,600/200 as `t1`'s.
+2. **The SWIEPH count is MeanNode, not `.se1` data.** The 200 SWIEPH calls
+   per position tier are the 200 MeanNode cases: with no `.se1` file on the
+   path, `calc_ut` for the mean node still returns the SWIEPH flag while
+   every other body returns MOSEPH (8 bodies x 200 = 1,600). This is an
+   output-level observation of the returned flag, nothing more.
+3. **Houses and ayanamsha calls were not counted.** `houses_ex` and
+   `get_ayanamsa_ut` return no backend flag, and the adapter recorded
+   nothing for them. That is why the Phase B Swiss artifacts are named
+   `backend not yet determined — no cases run` even though `houses` carries
+   930 compared results (the other Phase B Swiss artifacts are all
+   `oracle_unsupported`, so for them no call reached swisseph at all), and
+   why `t2`'s 200 ayanamsha calls added nothing to the tally.
+
+The adapter now resets the tally at the start of every run and counts a
+flagless call as `NOT_REPORTED`, so a regenerated `houses` artifact would be
+named `Swiss Ephemeris (backend not reported by these calls)` and each
+position tier would carry only its own calls. The artifacts committed here
+were not regenerated and carry the old names, file names included.

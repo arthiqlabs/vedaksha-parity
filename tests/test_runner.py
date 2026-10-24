@@ -70,3 +70,16 @@ def test_an_oracle_crash_is_recorded_not_left_to_crash_the_run(engine):
     result = run(cases, engine, _CrashingOracle())
     assert result["counts"]["oracle_error"] == 1
     assert result["rows"][0]["disposition"] == "oracle_error"
+
+
+def test_each_run_records_only_its_own_backend_tally(engine):
+    # One oracle instance serves every tier of a run-config, so a tally
+    # that is not reset per run would carry earlier tiers' calls into a
+    # later tier's NAME.
+    shared = SwissephOracle()
+    cases = build_cases_t1(J2000, J2000, 30.0)
+    run(cases, engine, shared)
+    first = dict(shared.settings()["backends_used"])
+    run(cases, engine, shared)
+    assert shared.settings()["backends_used"] == first
+    assert sum(first.values()) == len(cases)

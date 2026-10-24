@@ -30,6 +30,12 @@ def run(cases: list[dict[str, Any]], engine: Engine, oracle: Any) -> dict[str, A
         "oracle_unsupported": 0, "oracle_error": 0, "engine_error": 0,
     }
 
+    # An oracle that tallies per-call provenance (SwissephOracle's backend
+    # count) resets it here, so the run record describes this run only.
+    begin_run = getattr(oracle, "begin_run", None)
+    if callable(begin_run):
+        begin_run()
+
     for case in cases:
         try:
             oracle_answer = oracle.answer(case)

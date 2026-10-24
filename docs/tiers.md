@@ -65,13 +65,20 @@ birth records, 9 bodies each: **T1 sidereal position 1624 pass / 131
 review / 0 fail / 45 engine_error; T1-tropical the same split; T2
 ayanamsha 195 pass / 0 review / 0 fail / 5 engine_error.** Every
 engine_error is one of the same 5 birth records, each outside Vedaksha's
-supported date range (5 records × 9 bodies = 45). All 131 review cases
-are TrueNode (TrueNode: 64 pass / 131 review; longitude delta mean
+supported date range (5 records × 9 bodies = 45). The count of 5 comes from
+the sample, not the engine: the seed-42 draw of the unchanged birth bank
+(`configs/all-tiers-200-birthbank-v2.yaml`) holds 5 records outside
+`[JD 2378496.5, 2597641.5]`, where the seed-20260829 draw
+(`configs/all-tiers-200-birthbank.yaml`) holds 2, and Vedaksha 9.1.0
+refused exactly the same 5 Julian Days in this config. All 131 review
+cases are TrueNode (TrueNode: 64 pass / 131 review; longitude delta mean
 +0.07″, range −37.8″ to +32.2″), an inherently higher-variance,
 perturbation-including quantity, not a distinct issue; every other body
-passes on all 195 evaluable records. The Swiss Ephemeris backend tally
-behind these runs is recorded in each artifact's oracle name (see
-`results/canonical/README.md`). `ayanamsha_mode` is `"mean"`-selectable too, for
+passes on all 195 evaluable records. No `.se1` files were installed, so
+these are Moshier-fallback Swiss Ephemeris positions; the backend tally in
+these artifacts' oracle names is cumulative across tiers and counts MeanNode
+under SWIEPH, so read it with `results/canonical/README.md`'s corrections.
+`ayanamsha_mode` is `"mean"`-selectable too, for
 comparing against a mean-only ayanamsha convention if that's ever needed;
 `"true"` is the default and what the figures above use.
 
@@ -371,7 +378,8 @@ Against jyotishganit's own per-sign bindu counts (Sarvashtakavarga
 totals), same grid and sweep: **0 pass / 0 review / 928 fail / 2
 oracle_error.** 925 of the 928 fails mismatch exactly two adjacent signs,
 one by +1 bindu and the other by −1, so one bindu sits in a neighbouring
-sign; the most frequent pairs (signs indexed 0 = Aries) are 1/2 (150
+sign, and in all 925 jyotishganit's bindu is the one in the later sign of
+the pair (Pisces to Aries in the 30 cases that wrap); the most frequent pairs (signs indexed 0 = Aries) are 1/2 (150
 cases) and 10/11 (120 cases). The other 3 fails are the same three
 charts as the Bhavas fails (Lucknow, Ahmedabad, Kolkata), with 10 or 11
 signs mismatched by up to 6 bindus, consistent with the lagna sign
